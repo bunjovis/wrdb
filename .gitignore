@@ -1,0 +1,11 @@
+*.log
+.env
+client/node_modules
+client/build
+node_modules
+.DS_Store
+/*.env
+package-lock.json
+client/package-lock.json
+*.lock
+.vagrant
