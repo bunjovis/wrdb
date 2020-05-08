@@ -2,7 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const path = require('path');
 //const db = require('./db');
-//const apiRoutes = require('./routes/apiRoutes');
+const routes = require('./routes');
 
 const app = express();
 
@@ -30,7 +30,7 @@ app.use(helmet());
 // Use JSON parser
 app.use(express.json());
 // Serve API routes
-// app.use('/api', apiRoutes);
+app.use('/api', routes);
 
 // Serve static React app
 app.use(express.static('client/build'));
