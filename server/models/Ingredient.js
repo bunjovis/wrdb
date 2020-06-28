@@ -11,6 +11,9 @@ const ingredientSchema = mongoose.Schema({
     required: true,
     min: 0,
   },
+  comment: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model('Ingredient', ingredientSchema);
