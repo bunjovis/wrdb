@@ -45,6 +45,9 @@ const wineSchema = mongoose.Schema(
     comments: {
       type: [Comment],
     },
+    labelId: {
+      type: String,
+    },
   },
   {
     timestamps: true,
