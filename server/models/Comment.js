@@ -4,6 +4,10 @@ const commentSchema = mongoose.Schema(
   {
     text: {
       type: String,
+      required: true,
+      trim: true,
+      minlength: 1,
+      maxlength: 2000,
     },
   },
   { timestamps: true }
