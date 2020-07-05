@@ -1,18 +1,18 @@
 const express = require('express');
 const helmet = require('helmet');
 const path = require('path');
-//const db = require('./db');
+const db = require('./db');
 const routes = require('./routes');
-
+require('dotenv').config();
 const app = express();
 
 // Open MongoDB connection
 const dbConfig = {
-  host: 'localhost',
-  port: '27017',
-  db: 'winedb',
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  db: process.env.DB,
 };
-// db.connect(dbConfig);
+db.connect(dbConfig);
 
 // Run setup script
 // require('./setup');

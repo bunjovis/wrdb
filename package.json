@@ -15,6 +15,7 @@
     "postinstall": "cd client && npm install"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "concurrently": "^5.2.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
@@ -23,18 +24,18 @@
     "eslint-plugin-flowtype": "^4.7.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-mocha": "^7.0.1",
     "eslint-plugin-prettier": "^3.1.3",
+    "mocha": "^8.0.1",
     "nodemon": "^2.0.3",
     "prettier": "^2.0.5"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "chai": "^4.2.0",
-    "eslint-plugin-mocha": "^7.0.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.22.0",
     "jsonwebtoken": "^8.5.1",
-    "mocha": "^8.0.1",
     "mongoose": "^5.9.11",
     "xss-filters": "^1.2.7"
   }
