@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+require('dotenv').config();
 
 const userSchema = mongoose.Schema({
   name: {
@@ -26,9 +27,21 @@ const userSchema = mongoose.Schema({
     set: (password) => {
       return !password || password.length === 0
         ? password
-        : bcrypt.hashSync(password, 10);
+        : bcrypt.hashSync(password, process.env.SALT);
     },
   },
 });
+
+userSchema.statics.verifyPassword = (email, password) => {
+  this.find({ email: email }, (err, res) => {
+    if (err) {
+      return false;
+    } else {
+      bcrypt.compare(password, res.password, (err2, res2) => {
+        return res2;
+      });
+    }
+  });
+};
 
 module.exports = mongoose.model('User', userSchema);
