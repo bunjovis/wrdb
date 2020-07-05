@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-expressions */
 const chai = require('chai');
-const Ingredient = require('../../server/models/Ingredient');
+const Ingredient = require('../../server/models/Ingredient').model;
 const IngredientType = require('../../server/models/IngredientType').model;
-const db = require('../../server/db');
 
 const { expect } = chai;
 
@@ -13,20 +12,6 @@ const validIngredientType = new IngredientType({
 });
 
 describe('Ingredient Model', function () {
-  this.beforeAll((done) => {
-    // Open MongoDB connection
-    const dbConfig = {
-      host: 'localhost',
-      port: '27017',
-      db: 'winedb',
-    };
-    db.connect(dbConfig);
-    validIngredientType.save(done);
-  });
-
-  this.afterAll(() => {
-    db.disconnect();
-  });
   describe('type', function () {
     it('should be a valid ObjectId string', function () {
       const ingredient = new Ingredient({
@@ -154,8 +139,8 @@ describe('Ingredient Model', function () {
     it('should be a string', function () {
       const ingredient = new Ingredient({
         type: validIngredientType._id.toString(),
-        amount: 101,
-        comment: new Number(1),
+        amount: 10,
+        comment: { comment: 'kommentti' },
       });
       const err = ingredient.validateSync();
       expect(err).to.exist;
@@ -174,13 +159,13 @@ describe('Ingredient Model', function () {
       const err3 = ingredient3.validateSync();
       expect(err3).to.not.exist;
     });
-    it('should exist', function () {
+    it('is not mandatory', function () {
       const ingredient = new Ingredient({
         type: validIngredientType._id.toString(),
-        amount: 101,
+        amount: 10,
       });
       const err = ingredient.validateSync();
-      expect(err).to.exist;
+      expect(err).to.not.exist;
     });
     it('should be at least 1 character long', function () {
       const ingredient = new Ingredient({

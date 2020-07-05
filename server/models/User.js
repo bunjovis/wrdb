@@ -7,11 +7,15 @@ const userSchema = mongoose.Schema({
     required: true,
     trim: true,
     minlength: 1,
+    maxlength: 100,
   },
   email: {
     type: String,
     required: true,
     trim: true,
+    minlength: 1,
+    maxlength: 254,
+    unique: true,
     // https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
     match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
   },

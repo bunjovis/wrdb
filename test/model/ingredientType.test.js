@@ -2,7 +2,6 @@
 const chai = require('chai');
 const Ingredient = require('../../server/models/Ingredient');
 const IngredientType = require('../../server/models/IngredientType').model;
-const db = require('../../server/db');
 
 const { expect } = chai;
 

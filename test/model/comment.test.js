@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-expressions */
 const chai = require('chai');
-const Comment = require('../../server/models/Comment');
+const Comment = require('../../server/models/Comment').model;
 const db = require('../../server/db');
 
 const { expect } = chai;
 
 describe('Comment Model', function () {
-  this.beforeAll(() => {
+  this.beforeAll((done) => {
     // Open MongoDB connection
     const dbConfig = {
       host: 'localhost',
@@ -14,6 +14,7 @@ describe('Comment Model', function () {
       db: 'winedb',
     };
     db.connect(dbConfig);
+    done();
   });
 
   this.afterAll(() => {
@@ -63,7 +64,13 @@ describe('Comment Model', function () {
         } else {
           expect(doc.createdAt).to.exist;
           expect(doc.updatedAt).to.exist;
-          done();
+          Comment.findByIdAndDelete(doc._id.toString(), (err2, res) => {
+            if (err) {
+              done(err);
+            } else {
+              done();
+            }
+          });
         }
       });
     });
