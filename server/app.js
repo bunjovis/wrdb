@@ -15,7 +15,7 @@ const dbConfig = {
 db.connect(dbConfig);
 
 // Run setup script
-// require('./setup');
+require('./setup');
 
 // Choose port according to environment used
 let port;
