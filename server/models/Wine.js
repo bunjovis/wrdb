@@ -15,6 +15,12 @@ const wineSchema = mongoose.Schema(
       type: [Ingredient],
       required: true,
     },
+    totalCost: {
+      type: Number,
+      required: true,
+      min: 0,
+      max: 200,
+    },
     startingGravity: {
       type: Number,
       required: true,
