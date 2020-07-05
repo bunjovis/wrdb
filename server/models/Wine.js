@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const Ingredient = require('./Ingredient.js');
-const Comment = require('./Comment.js');
+const Ingredient = require('./Ingredient.js').schema;
+const Comment = require('./Comment.js').schema;
 
 const wineSchema = mongoose.Schema(
   {
@@ -9,25 +9,37 @@ const wineSchema = mongoose.Schema(
       required: true,
       trim: true,
       minlength: 1,
+      maxlength: 200,
     },
     ingredients: {
       type: [Ingredient],
+      required: true,
+      validate: (arr) => {
+        return Array.isArray(arr) && arr.length > 0;
+      },
+    },
+    totalCost: {
+      type: Number,
+      required: true,
+      min: 0,
+      max: 200,
     },
     startingGravity: {
       type: Number,
       required: true,
-      min: 1,
-      max: 2,
+      min: 1000,
+      max: 1200,
     },
     finalGravity: {
       type: Number,
-      min: 0,
-      max: 2,
+      min: 990,
+      max: 1200,
     },
     startingVolume: {
       type: Number,
       min: 0,
       max: 30,
+      required: true,
     },
     finalVolume: {
       type: Number,
@@ -37,7 +49,7 @@ const wineSchema = mongoose.Schema(
     alcoholContent: {
       type: Number,
       min: 0,
-      max: 25,
+      max: 20,
     },
     bottlingDate: {
       type: Date,
@@ -47,6 +59,9 @@ const wineSchema = mongoose.Schema(
     },
     labelId: {
       type: String,
+      minlength: 1,
+      maxlength: 50,
+      trim: true,
     },
   },
   {
