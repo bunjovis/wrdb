@@ -14,6 +14,9 @@ const wineSchema = mongoose.Schema(
     ingredients: {
       type: [Ingredient],
       required: true,
+      validate: (arr) => {
+        return Array.isArray(arr) && arr.length > 0;
+      },
     },
     totalCost: {
       type: Number,
