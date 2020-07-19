@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const sanitizerPlugin = require('mongoose-sanitizer');
+const sanitizerPlugin = require('mongoose-sanitizer-plugin');
 const bcrypt = require('bcryptjs');
 const UserRole = require('./UserRole');
 require('dotenv').config();
@@ -38,6 +38,9 @@ const userSchema = mongoose.Schema({
     enum: [UserRole.ADMIN, UserRole.USER],
   },
 });
-userSchema.plugin(sanitizerPlugin, { include: ['name', 'email'] });
+userSchema.plugin(sanitizerPlugin, {
+  include: ['name', 'email'],
+  mode: 'escape',
+});
 
 module.exports = mongoose.model('User', userSchema);

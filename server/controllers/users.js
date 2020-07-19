@@ -60,13 +60,14 @@ const addUser = (req, res) => {
 const showUser = (req, res) => {
   const id = req.params.id;
   if (req.userRole === UserRole.ADMIN || id === req.userId) {
-    User.findById(id, (err, doc) => {
-      if (!doc) {
-        return res.status(500).json({ message: 'User not found' });
-      }
+    User.findOne({ _id: id }, (err, doc) => {
       if (err) {
         return res.status(500).json({ message: 'Error occured', error: err });
       }
+      if (!doc) {
+        return res.status(500).json({ message: 'User not found' });
+      }
+
       return res.status(200).json({ user: doc });
     });
   } else {
@@ -77,24 +78,44 @@ const editUser = (req, res) => {
   const id = req.params.id;
   if (req.userRole === UserRole.ADMIN || id === req.userId) {
     const { name, email, password, role } = req.body;
-    User.findByIdAndUpdate(
-      id,
-      {
-        name: name,
-        email: email,
-        password,
-        role,
-      },
-      (err, doc) => {
-        if (!doc) {
-          return res.status(500).json({ message: 'User not found' });
-        }
-        if (err) {
-          return res.status(500).json({ message: 'Error occured', error: err });
-        }
-        return res.status(200).json({ user: doc });
+    User.findById(id, (err, doc) => {
+      if (err) {
+        return res.status(500).json({ message: 'Error occured', error: err });
       }
-    );
+      if (!doc) {
+        return res.status(500).json({ message: 'User not found' });
+      }
+
+      if (name && name !== '') {
+        doc.name = name;
+      }
+      if (name == '' || name == ' ') {
+        return res.status(500).json({ message: 'Error occured', error: err });
+      }
+      if (email && email !== '') {
+        doc.email = email;
+      }
+      if (email == '' || email == ' ') {
+        return res.status(500).json({ message: 'Error occured', error: err });
+      }
+      if (password && password !== '') {
+        doc.password = password;
+      }
+      if (password == '' || password == ' ') {
+        return res.status(500).json({ message: 'Error occured', error: err });
+      }
+      if (role && role !== '') {
+        doc.role = role;
+      }
+      doc.save({ runValidators: true }, (err2, doc2) => {
+        if (err2) {
+          return res
+            .status(500)
+            .json({ message: 'Error occured', error: err2 });
+        }
+        return res.status(200).json({ user: doc2 });
+      });
+    });
   } else {
     return res.status(401).json({ message: 'Unauthorized' });
   }

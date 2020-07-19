@@ -38,7 +38,7 @@
     "helmet": "^3.22.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.11",
-    "mongoose-sanitizer": "^1.0.0",
+    "mongoose-sanitizer-plugin": "^1.1.0",
     "node-fetch": "^2.6.0",
     "xss-filters": "^1.2.7"
   }
