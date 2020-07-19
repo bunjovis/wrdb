@@ -244,7 +244,19 @@ describe('/api/users', function () {
         expect(res.status).to.equal(201);
       });
     });
-    it('should require a valid email', function () {});
+    it('should require a valid email', function () {
+      newUser.email = 'erkki.fi.fi';
+      fetch('http://localhost:3000/api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + adminToken,
+        },
+        body: JSON.stringify(newUser),
+      }).then((res) => {
+        expect(res.status).to.equal(500);
+      });
+    });
     it('should require a unique email', function () {});
     it('should require a valid password', function () {});
     it('should require a valid role', function () {});
