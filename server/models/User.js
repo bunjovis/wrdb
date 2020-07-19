@@ -27,21 +27,9 @@ const userSchema = mongoose.Schema({
     set: (password) => {
       return !password || password.length === 0
         ? password
-        : bcrypt.hashSync(password, process.env.SALT);
+        : bcrypt.hashSync(password, parseInt(process.env.SALT));
     },
   },
 });
-
-userSchema.statics.verifyPassword = (email, password) => {
-  this.find({ email: email }, (err, res) => {
-    if (err) {
-      return false;
-    } else {
-      bcrypt.compare(password, res.password, (err2, res2) => {
-        return res2;
-      });
-    }
-  });
-};
 
 module.exports = mongoose.model('User', userSchema);

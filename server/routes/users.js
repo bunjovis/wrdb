@@ -4,7 +4,6 @@ const auth = require('../middleware/authentication');
 
 const router = express.Router();
 router.post('/login', controller.login);
-router.post('/logout', controller.logout);
 router.use((req, res, next) => auth.verifyLogin(req, res, next));
 router.use((req, res, next) => auth.verifyRole(req, res, next));
 router.get('/', controller.listUsers);
