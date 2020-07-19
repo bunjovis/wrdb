@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
+const sanitizerPlugin = require('mongoose-sanitizer-plugin');
 const bcrypt = require('bcryptjs');
+const UserRole = require('./UserRole');
+require('dotenv').config();
 
 const userSchema = mongoose.Schema({
   name: {
@@ -26,9 +29,18 @@ const userSchema = mongoose.Schema({
     set: (password) => {
       return !password || password.length === 0
         ? password
-        : bcrypt.hashSync(password, 10);
+        : bcrypt.hashSync(password, parseInt(process.env.SALT));
     },
   },
+  role: {
+    type: Number,
+    required: true,
+    enum: [UserRole.ADMIN, UserRole.USER],
+  },
+});
+userSchema.plugin(sanitizerPlugin, {
+  include: ['name', 'email'],
+  mode: 'escape',
 });
 
 module.exports = mongoose.model('User', userSchema);

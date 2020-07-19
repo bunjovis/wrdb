@@ -9,3 +9,5 @@ package-lock.json
 client/package-lock.json
 *.lock
 .vagrant
+.nyc_output
+coverage
