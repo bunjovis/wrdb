@@ -7,7 +7,7 @@
   "author": "Kari Harmaahieta <kari.harmaahieta@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "nyc mocha --recursive test/**/*.test.js --exit --timeout 10000",
+    "test": "nyc --reporter=html mocha --recursive test/**/*.test.js --exit --timeout 10000",
     "client": "cd client && yarn run build",
     "dev": "env NODE_ENV=dev concurrently \"nodemon server/app.js\" \"cd client && yarn start\"",
     "start": "yarn run client && node server/app.js",
