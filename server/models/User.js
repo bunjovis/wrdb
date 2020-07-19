@@ -1,12 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const UserRole = require('../../../../tieta12/data/i-want-all-the-3-points/server/models/UserRole');
+const UserRole = require('./UserRole');
 require('dotenv').config();
-
-const UserRole = {
-  ADMIN: 1,
-  USER: 2,
-};
 
 const userSchema = mongoose.Schema({
   name: {
@@ -37,8 +32,9 @@ const userSchema = mongoose.Schema({
     },
   },
   role: {
-    type: UserRole,
+    type: Number,
     required: true,
+    enum: [UserRole.ADMIN, UserRole.USER],
   },
 });
 
