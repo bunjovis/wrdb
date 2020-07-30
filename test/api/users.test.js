@@ -915,6 +915,7 @@ describe('/api/users', function () {
               },
             }).then((res3) => {
               expect(res3.status).to.equal(200);
+              console.log(res3.json());
               fetch('http://localhost:3000/api/users/' + user._id, {
                 method: 'DELETE',
                 headers: {
