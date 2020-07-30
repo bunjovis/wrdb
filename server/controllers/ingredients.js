@@ -33,6 +33,7 @@ const showIngredient = (req, res) => {
 };
 const editIngredient = (req, res) => {
   const id = req.params.id;
+  const { type, amount, comment } = req.body;
   Ingredient.findById(id, (err, doc) => {
     if (err) {
       return res.status(500).json({ message: 'Error occured', error: err });
@@ -58,7 +59,7 @@ const editIngredient = (req, res) => {
 };
 const deleteIngredient = (req, res) => {
   const id = req.params.id;
-  User.findByIdAndRemove(id, (err, doc) => {
+  Ingredient.findByIdAndRemove(id, (err, doc) => {
     if (!doc) {
       return res.status(500).json({ message: 'Ingredient not found' });
     }
