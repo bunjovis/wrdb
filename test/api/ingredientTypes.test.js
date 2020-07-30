@@ -12,7 +12,7 @@ const { expect } = chai;
 let userToken;
 let adminToken;
 
-describe('/api/ingredients', function () {
+describe('/api/ingredienttypes', function () {
   describe('GET /', function () {
     it('should require login', function () {});
     it('should return a list of ingredient types', function () {});
