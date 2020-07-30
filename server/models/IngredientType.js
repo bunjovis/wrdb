@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const sanitizerPlugin = require('mongoose-sanitizer-plugin');
 
 const ingredientTypeSchema = mongoose.Schema({
   name: {
@@ -22,7 +23,10 @@ const ingredientTypeSchema = mongoose.Schema({
     max: 1000,
   },
 });
-
+ingredientTypeSchema.plugin(sanitizerPlugin, {
+  include: ['name', 'unit'],
+  mode: 'escape',
+});
 module.exports = {
   model: mongoose.model('IngredientType', ingredientTypeSchema),
   schema: ingredientTypeSchema,
