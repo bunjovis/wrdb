@@ -1,13 +1,13 @@
-const IngredientType = require('../models/IngredientType');
+const IngredientType = require('../models/IngredientType').model;
 
 const listIngredientTypes = (req, res) => {
-  IngredientType.find((err, res) => {
-    return res.status(200).json({ ingredientTypes: res });
+  IngredientType.find((err, res2) => {
+    return res.status(200).json({ ingredientTypes: res2 });
   });
 };
 const addIngredientType = (req, res) => {
   const { name, unit, price } = req.body;
-  const ingredientType = new IngredientType(name, unit, price);
+  const ingredientType = new IngredientType({ name, unit, price });
   ingredientType.save((err, doc) => {
     if (err || !doc) {
       return res.status(500).json({ message: 'Error occured', error: err });
@@ -43,18 +43,23 @@ const editIngredientType = (req, res) => {
     }
 
     if (name && name !== '') {
-      doc.comment = comment;
+      doc.name = name;
     }
     if (name == '' || name == ' ') {
       return res.status(500).json({ message: 'Error occured', error: err });
     }
     if (unit && unit !== '') {
-      doc.comment = comment;
+      doc.unit = unit;
     }
     if (unit == '' || unit == ' ') {
       return res.status(500).json({ message: 'Error occured', error: err });
     }
-
+    if (price && isNaN(price)) {
+      return res.status(500).json({ message: 'Error occured', error: err });
+    }
+    if (price) {
+      doc.price = price;
+    }
     doc.save({ runValidators: true }, (err2, doc2) => {
       if (err2) {
         return res.status(500).json({ message: 'Error occured', error: err2 });
