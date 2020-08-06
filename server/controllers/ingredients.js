@@ -1,13 +1,11 @@
-const Ingredient = require('../models/Ingredient');
+const Ingredient = require('../models/Ingredient').model;
 
 const listIngredients = (req, res) => {
-  Ingredient.find((err, res) => {
-    return res.status(200).json({ ingredients: res });
-  });
+  Ingredient.find((err, res2) => res.status(200).json({ ingredients: res2 }));
 };
 const addIngredient = (req, res) => {
   const { type, amount, comment } = req.body;
-  const ingredient = new Ingredient(type, amount, comment);
+  const ingredient = new Ingredient({ type, amount, comment });
   ingredient.save((err, doc) => {
     if (err || !doc) {
       return res.status(500).json({ message: 'Error occured', error: err });
@@ -19,7 +17,7 @@ const addIngredient = (req, res) => {
   });
 };
 const showIngredient = (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   Ingredient.findOne({ _id: id }, (err, doc) => {
     if (err) {
       return res.status(500).json({ message: 'Error occured', error: err });
@@ -32,7 +30,7 @@ const showIngredient = (req, res) => {
   });
 };
 const editIngredient = (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   const { type, amount, comment } = req.body;
   Ingredient.findById(id, (err, doc) => {
     if (err) {
@@ -41,7 +39,12 @@ const editIngredient = (req, res) => {
     if (!doc) {
       return res.status(500).json({ message: 'Ingredient not found' });
     }
-
+    if (type) {
+      doc.type = type;
+    }
+    if (amount) {
+      doc.amount = amount;
+    }
     if (comment && comment !== '') {
       doc.comment = comment;
     }
@@ -58,7 +61,7 @@ const editIngredient = (req, res) => {
   });
 };
 const deleteIngredient = (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   Ingredient.findByIdAndRemove(id, (err, doc) => {
     if (!doc) {
       return res.status(500).json({ message: 'Ingredient not found' });

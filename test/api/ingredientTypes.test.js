@@ -1,17 +1,15 @@
+/* eslint-disable mocha/no-setup-in-describe */
 /* eslint-disable no-unused-expressions */
 const chai = require('chai');
 const fetch = require('node-fetch');
 const jwt = require('jsonwebtoken');
-const App = require('../../server/app');
-const db = require('../../server/db');
-const User = require('../../server/models/User');
-const UserRole = require('../../server/models/UserRole');
+require('../../server/app');
 const IngredientType = require('../../server/models/IngredientType').model;
 require('dotenv').config();
 
 const { expect } = chai;
-let userToken;
 let adminToken;
+let peruna;
 
 describe('/api/ingredienttypes', function () {
   this.beforeAll(async function () {
@@ -34,9 +32,7 @@ describe('/api/ingredienttypes', function () {
         password: process.env.ADMIN_PASS,
       }),
     })
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((json) => {
         jwt.verify(json.token, process.env.SECRET, function (err, decoded) {
           expect(err).to.not.exist;
@@ -64,12 +60,10 @@ describe('/api/ingredienttypes', function () {
       fetch('http://localhost:3000/api/ingredienttypes', {
         method: 'GET',
         headers: {
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
       })
-        .then((res) => {
-          return res.json();
-        })
+        .then((res) => res.json())
         .then((json) => {
           expect(json.ingredientTypes.length).to.be.greaterThan(0);
         });
@@ -77,7 +71,7 @@ describe('/api/ingredienttypes', function () {
   });
   describe('POST /', function () {
     let newIngredientType;
-    beforeEach((done) => {
+    beforeEach(function (done) {
       newIngredientType = {
         name: 'Tomaatti',
         unit: 'kg',
@@ -102,7 +96,7 @@ describe('/api/ingredienttypes', function () {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify(newIngredientType),
       }).then((res) => {
@@ -113,7 +107,7 @@ describe('/api/ingredienttypes', function () {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify(newIngredientType),
       }).then((res) => {
@@ -125,7 +119,7 @@ describe('/api/ingredienttypes', function () {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify(newIngredientType),
       }).then((res) => {
@@ -138,7 +132,7 @@ describe('/api/ingredienttypes', function () {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify(newIngredientType),
       }).then((res) => {
@@ -149,7 +143,7 @@ describe('/api/ingredienttypes', function () {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify(newIngredientType),
       }).then((res) => {
@@ -160,7 +154,7 @@ describe('/api/ingredienttypes', function () {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify(newIngredientType),
       }).then((res) => {
@@ -173,7 +167,7 @@ describe('/api/ingredienttypes', function () {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify(newIngredientType),
       }).then((res) => {
@@ -184,7 +178,7 @@ describe('/api/ingredienttypes', function () {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify(newIngredientType),
       }).then((res) => {
@@ -195,7 +189,7 @@ describe('/api/ingredienttypes', function () {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify(newIngredientType),
       }).then((res) => {
@@ -208,13 +202,11 @@ describe('/api/ingredienttypes', function () {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify(newIngredientType),
       })
-        .then((res) => {
-          return res.json();
-        })
+        .then((res) => res.json())
         .then((json) => {
           expect(json.ingredientType.name).to.not.equal(newIngredientType.name);
           IngredientType.findByIdAndDelete(
@@ -229,13 +221,11 @@ describe('/api/ingredienttypes', function () {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify(newIngredientType),
       })
-        .then((res) => {
-          return res.json();
-        })
+        .then((res) => res.json())
         .then((json) => {
           expect(json.ingredientType.unit).to.not.equal(newIngredientType.unit);
           IngredientType.findByIdAndDelete(
@@ -249,13 +239,11 @@ describe('/api/ingredienttypes', function () {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify(newIngredientType),
       })
-        .then((res) => {
-          return res.json();
-        })
+        .then((res) => res.json())
         .then((json) => {
           expect(json.ingredientType.name).to.equal(newIngredientType.name);
           expect(json.ingredientType.unit).to.equal(newIngredientType.unit);
@@ -269,17 +257,17 @@ describe('/api/ingredienttypes', function () {
   });
   describe('GET /:id', function () {
     it('should require login', function () {
-      fetch('http://localhost:3000/api/ingredienttypes/' + peruna._id, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${peruna._id}`, {
         method: 'GET',
       }).then((res) => {
         expect(res.status).to.equal(401);
       });
     });
     it('should reply with message "Error occured" to invalid id', function () {
-      fetch('http://localhost:3000/api/ingredienttypes/' + 123, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${123}`, {
         method: 'GET',
         headers: {
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
       })
         .then((res) => {
@@ -292,11 +280,11 @@ describe('/api/ingredienttypes', function () {
     });
     it('should reply with message "Error occured" when there is no ingredient type with a valid id', function () {
       fetch(
-        'http://localhost:3000/api/ingredienttypes/' + 111111111111111111111111,
+        `http://localhost:3000/api/ingredienttypes/${111111111111111111111111}`,
         {
           method: 'GET',
           headers: {
-            Authorization: 'Bearer ' + adminToken,
+            Authorization: `Bearer ${adminToken}`,
           },
         }
       )
@@ -309,10 +297,10 @@ describe('/api/ingredienttypes', function () {
         });
     });
     it('should return correct ingredient type', function () {
-      fetch('http://localhost:3000/api/ingredienttypes/' + peruna._id, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${peruna._id}`, {
         method: 'GET',
         headers: {
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
       })
         .then((res) => {
@@ -328,7 +316,7 @@ describe('/api/ingredienttypes', function () {
   });
   describe('PUT /:id', function () {
     it('should require login', function () {
-      fetch('http://localhost:3000/api/ingredienttypes/' + peruna._id, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${peruna._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -339,31 +327,31 @@ describe('/api/ingredienttypes', function () {
       });
     });
     it('should require a valid name', function () {
-      fetch('http://localhost:3000/api/ingredienttypes/' + peruna._id, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${peruna._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify({ name: '' }),
       }).then((res) => {
         expect(res.status).to.equal(500);
       });
-      fetch('http://localhost:3000/api/ingredienttypes/' + peruna._id, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${peruna._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify({ name: ['dfg'] }),
       }).then((res) => {
         expect(res.status).to.equal(500);
       });
-      fetch('http://localhost:3000/api/ingredienttypes/' + peruna._id, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${peruna._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify({ name: { name: 'asdadsd' } }),
       }).then((res) => {
@@ -371,31 +359,31 @@ describe('/api/ingredienttypes', function () {
       });
     });
     it('should require a valid unit', function () {
-      fetch('http://localhost:3000/api/ingredienttypes/' + peruna._id, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${peruna._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify({ unit: '' }),
       }).then((res) => {
         expect(res.status).to.equal(500);
       });
-      fetch('http://localhost:3000/api/ingredienttypes/' + peruna._id, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${peruna._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify({ unit: ['dfg'] }),
       }).then((res) => {
         expect(res.status).to.equal(500);
       });
-      fetch('http://localhost:3000/api/ingredienttypes/' + peruna._id, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${peruna._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify({ unit: { name: 'asdadsd' } }),
       }).then((res) => {
@@ -403,31 +391,31 @@ describe('/api/ingredienttypes', function () {
       });
     });
     it('should require a valid price', function () {
-      fetch('http://localhost:3000/api/ingredienttypes/' + peruna._id, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${peruna._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify({ price: 'kolme euroa' }),
       }).then((res) => {
         expect(res.status).to.equal(500);
       });
-      fetch('http://localhost:3000/api/ingredienttypes/' + peruna._id, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${peruna._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify({ price: -10 }),
       }).then((res) => {
         expect(res.status).to.equal(500);
       });
-      fetch('http://localhost:3000/api/ingredienttypes/' + peruna._id, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${peruna._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify({ price: { price: 5.4 } }),
       }).then((res) => {
@@ -435,11 +423,11 @@ describe('/api/ingredienttypes', function () {
       });
     });
     it('should escape HTML from name', function () {
-      fetch('http://localhost:3000/api/ingredienttypes/' + peruna._id, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${peruna._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify({ name: '<script>stealCreditcards();</script>' }),
       })
@@ -454,11 +442,11 @@ describe('/api/ingredienttypes', function () {
         });
     });
     it('should escape HTML from unit', function () {
-      fetch('http://localhost:3000/api/ingredienttypes/' + peruna._id, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${peruna._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify({ unit: '<sc>x();</sc>' }),
       })
@@ -471,11 +459,11 @@ describe('/api/ingredienttypes', function () {
         });
     });
     it('should return the updated ingredient type', function () {
-      fetch('http://localhost:3000/api/ingredienttypes/' + peruna._id, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${peruna._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify({ name: 'Mustaherukka' }),
       })
@@ -488,11 +476,11 @@ describe('/api/ingredienttypes', function () {
         });
     });
     it('should reply with message "Error occured" to invalid id', function () {
-      fetch('http://localhost:3000/api/ingredienttypes/' + 6351, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${6351}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify({ name: 'Mustaherukka' }),
       })
@@ -507,7 +495,7 @@ describe('/api/ingredienttypes', function () {
   });
   describe('DELETE /:id', function () {
     it('should require login', function () {
-      fetch('http://localhost:3000/api/ingredienttypes/' + peruna._id, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${peruna._id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -517,22 +505,22 @@ describe('/api/ingredienttypes', function () {
       });
     });
     it('should reply with message "Ingredient type not found" to invalid id', function () {
-      fetch('http://localhost:3000/api/ingredienttypes/' + 123, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${123}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
       }).then((res) => {
         expect(res.status).to.equal(500);
       });
     });
     it('should return the deleted ingredient type', function () {
-      fetch('http://localhost:3000/api/ingredienttypes/' + peruna._id, {
+      fetch(`http://localhost:3000/api/ingredienttypes/${peruna._id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + adminToken,
+          Authorization: `Bearer ${adminToken}`,
         },
       })
         .then((res) => {

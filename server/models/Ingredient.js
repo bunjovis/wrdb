@@ -9,16 +9,10 @@ const ingredientSchema = mongoose.Schema({
     minlength: 1,
     maxlength: 24,
     trim: true,
-    set: (type) => {
-      if (typeof type != 'string') {
-        return undefined;
-      } else {
-        if (mongoose.Types.ObjectId.isValid(type)) {
-          return type;
-        } else {
-          return undefined;
-        }
-      }
+    validate: {
+      validator(val) {
+        return mongoose.Types.ObjectId.isValid(val);
+      },
     },
   },
   amount: {
