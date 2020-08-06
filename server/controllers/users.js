@@ -2,7 +2,6 @@ const User = require('../models/User');
 const UserRole = require('../models/UserRole');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-var xssFilters = require('xss-filters');
 
 const login = (req, res) => {
   const { email, password } = req.body;

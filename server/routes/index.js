@@ -2,12 +2,14 @@ const express = require('express');
 const users = require('./users');
 const wines = require('./wines');
 const ingredients = require('./ingredients');
+const ingredientTypes = require('./ingredientTypes');
 
 const router = express.Router();
 
 router.use('/users', users);
 router.use('/wines', wines);
 router.use('/ingredients', ingredients);
+router.use('/ingredienttypes', ingredientTypes);
 router.use('/', (req, res) => {
   res.json({
     routes: [
@@ -19,6 +21,9 @@ router.use('/', (req, res) => {
       },
       {
         href: '/ingredients',
+      },
+      {
+        href: '/ingredienttypes',
       },
     ],
   });

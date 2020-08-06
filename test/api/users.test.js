@@ -887,6 +887,7 @@ describe('/api/users', function () {
       });
     });
     it('should require admin role or :id to be requesters id', function () {
+      let userid;
       fetch('http://localhost:3000/api/users/', {
         method: 'POST',
         headers: {
@@ -899,6 +900,7 @@ describe('/api/users', function () {
           return res.json();
         })
         .then((json) => {
+          userid = json.user._id;
           fetch('http://localhost:3000/api/users/' + json.user._id, {
             method: 'DELETE',
             headers: {
@@ -907,24 +909,26 @@ describe('/api/users', function () {
             },
           }).then((res2) => {
             expect(res2.status).to.equal(401);
-            fetch('http://localhost:3000/api/users/' + json.user._id, {
-              method: 'DELETE',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + adminToken,
-              },
-            }).then((res3) => {
-              expect(res3.status).to.equal(200);
-              fetch('http://localhost:3000/api/users/' + user._id, {
+            setTimeout(() => {
+              fetch('http://localhost:3000/api/users/' + userid, {
                 method: 'DELETE',
                 headers: {
                   'Content-Type': 'application/json',
-                  Authorization: 'Bearer ' + userToken,
+                  Authorization: 'Bearer ' + adminToken,
                 },
-              }).then((res4) => {
-                expect(res4.status).to.equal(200);
+              }).then((res3) => {
+                expect(res3.status).to.equal(200);
+                fetch('http://localhost:3000/api/users/' + user._id, {
+                  method: 'DELETE',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + userToken,
+                  },
+                }).then((res4) => {
+                  expect(res4.status).to.equal(200);
+                });
               });
-            });
+            }, 3000);
           });
         });
     });

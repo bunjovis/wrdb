@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const sanitizerPlugin = require('mongoose-sanitizer-plugin');
 
 const commentSchema = mongoose.Schema(
   {
@@ -12,7 +13,10 @@ const commentSchema = mongoose.Schema(
   },
   { timestamps: true }
 );
-
+commentSchema.plugin(sanitizerPlugin, {
+  include: ['text'],
+  mode: 'escape',
+});
 module.exports = {
   model: mongoose.model('Comment', commentSchema),
   schema: commentSchema,

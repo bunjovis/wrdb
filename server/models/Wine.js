@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Ingredient = require('./Ingredient.js').schema;
 const Comment = require('./Comment.js').schema;
+const sanitizerPlugin = require('mongoose-sanitizer-plugin');
 
 const wineSchema = mongoose.Schema(
   {
@@ -68,5 +69,8 @@ const wineSchema = mongoose.Schema(
     timestamps: true,
   }
 );
-
+wineSchema.plugin(sanitizerPlugin, {
+  include: ['name'],
+  mode: 'escape',
+});
 module.exports = mongoose.model('Wine', wineSchema);

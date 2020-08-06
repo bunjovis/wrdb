@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const IngredientType = require('./IngredientType').model;
+const sanitizerPlugin = require('mongoose-sanitizer-plugin');
 
 const ingredientSchema = mongoose.Schema({
   type: {
@@ -8,16 +9,10 @@ const ingredientSchema = mongoose.Schema({
     minlength: 1,
     maxlength: 24,
     trim: true,
-    set: (type) => {
-      if (typeof type != 'string') {
-        return undefined;
-      } else {
-        if (mongoose.Types.ObjectId.isValid(type)) {
-          return type;
-        } else {
-          return undefined;
-        }
-      }
+    validate: {
+      validator(val) {
+        return mongoose.Types.ObjectId.isValid(val);
+      },
     },
   },
   amount: {
@@ -33,7 +28,10 @@ const ingredientSchema = mongoose.Schema({
     trim: true,
   },
 });
-
+ingredientSchema.plugin(sanitizerPlugin, {
+  include: ['comment'],
+  mode: 'escape',
+});
 module.exports = {
   model: mongoose.model('Ingredient', ingredientSchema),
   schema: ingredientSchema,
