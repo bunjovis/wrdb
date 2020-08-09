@@ -52,8 +52,8 @@ describe('/api/ingredients', function () {
       });
   });
   this.afterAll(function (done) {
-    Ingredient.deleteOne({ id: kiloperunaa._id }, () => {
-      IngredientType.deleteOne({ id: peruna._id }, () => {
+    Ingredient.deleteOne({ _id: kiloperunaa._id }, () => {
+      IngredientType.deleteOne({ _id: peruna._id }, () => {
         done();
       });
     });

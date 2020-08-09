@@ -11,10 +11,5 @@ router.post('/', controller.addWine);
 router.get('/:id', controller.showWine);
 router.put('/:id', controller.editWine);
 router.delete('/:id', controller.deleteWine);
-router.get('/:id/comments', controller.listComments);
-router.post('/:id/comments', controller.addComment);
-router.get('/:id/comments/:commentid', controller.showComment);
-router.put('/:id/comments/:commentid', controller.editComment);
-router.delete('/:id/comments/:commentid', controller.deleteComment);
 
 module.exports = router;
