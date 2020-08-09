@@ -8,6 +8,11 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Navigation from './components/Navigation';
 import HomePage from './components/home/HomePage';
+import AddIngredientPage from './components/ingredients/AddIngredientPage';
+import EditIngredientPage from './components/ingredients/EditIngredientPage';
+import DeleteIngredientPage from './components/ingredients/DeleteIngredientPage';
+import IngredientsPage from './components/ingredients/IngredientsPage';
+import ShowIngredientPage from './components/ingredients/ShowIngredientPage';
 import './App.css';
 
 const useStyles = makeStyles({
@@ -67,6 +72,27 @@ function App(props) {
               elevation={3}
             >
               <Route exact path="/" component={HomePage} />
+              <Route exact path="/ingredients" component={IngredientsPage} />
+              <Route
+                exact
+                path="/ingredients/new"
+                component={AddIngredientPage}
+              />
+              <Route
+                exact
+                path="/ingredients/:id"
+                component={ShowIngredientPage}
+              />
+              <Route
+                exact
+                path="/ingredients/:id/edit"
+                component={EditIngredientPage}
+              />
+              <Route
+                exact
+                path="/ingredients/:id/delete"
+                component={DeleteIngredientPage}
+              />
             </Paper>
           </BrowserRouter>
         </Container>

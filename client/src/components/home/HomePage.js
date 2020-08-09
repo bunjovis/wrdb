@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function HomePage(props) {
-  return 'testiasd';
+  return 'Tilastoja, uusimmat viinit ym tänne';
 }
 
 export default HomePage;
