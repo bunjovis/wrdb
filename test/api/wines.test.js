@@ -372,16 +372,13 @@ describe('/api/wines', function () {
         });
     });
     it('should return correct wine', function () {
-      fetch(
-        `http://localhost:3000/api/ingredients/${perunaviini._id.toString()}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${adminToken}`,
-          },
-        }
-      )
+      fetch(`http://localhost:3000/api/wines/${perunaviini._id.toString()}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${adminToken}`,
+        },
+      })
         .then((res) => {
           expect(res.status).to.equal(200);
           return res.json();
@@ -448,7 +445,7 @@ describe('/api/wines', function () {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${adminToken}`,
         },
-        body: JSON.stringify({ ingredients: [''] }),
+        body: JSON.stringify({ ingredients: ['sdf'] }),
       }).then((res) => {
         expect(res.status).to.equal(500);
       });
