@@ -4,8 +4,11 @@ import { Route, BrowserRouter } from 'react-router-dom';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import Container from '@material-ui/core/Container';
+import Paper from '@material-ui/core/Paper';
+import Navigation from './components/Navigation';
+import HomePage from './components/home/HomePage';
 import './App.css';
-import { mergeClasses } from '@material-ui/styles';
 
 const useStyles = makeStyles({
   App: (props) => ({
@@ -16,15 +19,18 @@ const useStyles = makeStyles({
     paddingTop: '5vh',
     backgroundColor: props.bgcolor,
   }),
+  content: {
+    minHeight: '70vh',
+  },
 });
 
 const themeObject = {
   palette: {
     primary: {
-      main: '#81c784',
+      main: '#bf360c',
     },
     secondary: {
-      main: '#ff8a80',
+      main: '#424242',
     },
     type: 'light',
   },
@@ -50,7 +56,21 @@ function App(props) {
   });
   return (
     <ThemeProvider theme={themeConfig}>
-      <div className={classes.App}></div>
+      <div className={classes.App}>
+        <Container>
+          <BrowserRouter>
+            <Navigation />
+            <Paper
+              className={classes.content}
+              style={{ margin: 10, paddingBottom: 10 }}
+              square
+              elevation={3}
+            >
+              <Route exact path="/" component={HomePage} />
+            </Paper>
+          </BrowserRouter>
+        </Container>
+      </div>
     </ThemeProvider>
   );
 }
