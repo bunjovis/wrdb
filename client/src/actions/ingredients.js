@@ -10,25 +10,9 @@ export function fetchIngredients(token) {
         return res.json();
       })
       .then((json) => {
+        dispatch(clearIngredient());
         dispatch(clearIngredients());
         dispatch(receiveIngredients(json.ingredientTypes));
-      });
-  };
-}
-export function fetchIngredient(token, id) {
-  return (dispatch) => {
-    return fetch('../api/ingredienttypes/' + id, {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + token,
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((json) => {
-        dispatch(clearIngredient());
-        dispatch(receiveIngredient(json.ingredientType));
       });
   };
 }
@@ -43,6 +27,23 @@ function clearIngredients(json) {
     type: 'CLEAR_INGREDIENTS',
   };
 }
+export function fetchIngredient(token, id) {
+  return (dispatch) => {
+    return fetch('../../api/ingredienttypes/' + id, {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        dispatch(clearIngredient());
+        dispatch(receiveIngredient(json.ingredientType));
+      });
+  };
+}
 function receiveIngredient(json) {
   return {
     type: 'RECEIVE_INGREDIENT',
@@ -52,5 +53,28 @@ function receiveIngredient(json) {
 function clearIngredient(json) {
   return {
     type: 'CLEAR_INGREDIENT',
+  };
+}
+export function addIngredient(token, ingredient) {
+  return (dispatch) => {
+    return fetch('../api/ingredienttypes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      },
+      body: JSON.stringify({
+        name: ingredient.name,
+        unit: ingredient.unit,
+        price: ingredient.price,
+      }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        dispatch(clearIngredient());
+        dispatch(receiveIngredient(json.ingredientType));
+      });
   };
 }

@@ -89,7 +89,7 @@ function IngredientsPage(props) {
                     <TableCell>{ingredient.unit}</TableCell>
                     <TableCell>{ingredient.price}</TableCell>
                     <TableCell align="right">
-                      <Link to={'/ingredients/' + ingredient._id}>
+                      <Link to={'/ingredients/' + ingredient._id + '/show'}>
                         <IconButton color="primary">
                           <SearchIcon />
                         </IconButton>

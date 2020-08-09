@@ -73,15 +73,16 @@ function App(props) {
             >
               <Route exact path="/" component={HomePage} />
               <Route exact path="/ingredients" component={IngredientsPage} />
+
+              <Route
+                exact
+                path="/ingredients/:id/show"
+                component={ShowIngredientPage}
+              />
               <Route
                 exact
                 path="/ingredients/new"
                 component={AddIngredientPage}
-              />
-              <Route
-                exact
-                path="/ingredients/:id"
-                component={ShowIngredientPage}
               />
               <Route
                 exact
