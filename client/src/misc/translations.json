@@ -1,0 +1,14 @@
+{
+    "en": {
+        "LINK_HOME": "Home",
+        "LINK_WINES": "Wines",
+        "LINK_INGREDIENTS": "Ingredients",
+        "LINK_USERS": "Users",
+        "LINK_SETTINGS": "Settings",
+        "LINK_PROFILE": "Profile",
+        "LINK_LOGOUT": "Logout",
+        "LINK_LOGIN": "Login",
+        "LABEL_EMAIL": "Email",
+        "LABEL_PASSWORD": "Password"
+    }
+}

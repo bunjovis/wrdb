@@ -11,8 +11,10 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { userLogin, userLogout } from '../actions/user';
+import translations from '../misc/translations.json';
 
 function Login(props) {
+  const labels = translations[props.settings.language];
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const handleChangeEmail = (event) => {
@@ -30,7 +32,6 @@ function Login(props) {
     setPassword('');
     props.userLogout();
   };
-  console.log(props);
   return (
     <Box>
       {props.user.token == null ? (
@@ -40,7 +41,7 @@ function Login(props) {
             <FormGroup row>
               <TextField
                 id="email"
-                label="Email"
+                label={labels['LABEL_EMAIL']}
                 required
                 type="email"
                 value={email}
@@ -48,7 +49,7 @@ function Login(props) {
               />
               <TextField
                 id="password"
-                label="Password"
+                label={labels['LABEL_PASSWORD']}
                 required
                 type="password"
                 value={password}
@@ -59,7 +60,7 @@ function Login(props) {
                 type="submit"
                 startIcon={<LockOpenIcon />}
               >
-                Login
+                {labels['LINK_LOGIN']}
               </Button>
             </FormGroup>
           </form>
@@ -67,13 +68,17 @@ function Login(props) {
       ) : (
         <Box>
           <Link to="/settings" style={{ textDecoration: 'none' }}>
-            <Button startIcon={<SettingsIcon />}>Settings</Button>
+            <Button startIcon={<SettingsIcon />}>
+              {labels['LINK_SETTINGS']}
+            </Button>
           </Link>
           <Link to="/users" style={{ textDecoration: 'none' }}>
-            <Button startIcon={<AccountBoxIcon />}>Profile</Button>
+            <Button startIcon={<AccountBoxIcon />}>
+              {labels['LINK_PROFILE']}
+            </Button>
           </Link>
           <Button onClick={handleLogout} startIcon={<ExitToAppIcon />}>
-            Logout
+            {labels['LINK_LOGOUT']}
           </Button>
         </Box>
       )}
@@ -83,6 +88,7 @@ function Login(props) {
 const mapStateToProps = (state) => ({
   user: state.user,
   message: state.message,
+  settings: state.settings,
 });
 const mapDispatchToProps = (dispatch) => ({
   userLogin: (email, password) => {

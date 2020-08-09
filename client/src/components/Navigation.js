@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Link from 'react-router-dom/Link';
+import { Link } from 'react-router-dom/';
 import { connect } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,8 +11,10 @@ import Button from '@material-ui/core/Button';
 import PeopleIcon from '@material-ui/icons/People';
 import Login from './Login';
 import UserRole from '../misc/UserRole';
+import translations from '../misc/translations.json';
 
 function Navigation(props) {
+  const labels = translations[props.settings.language];
   return (
     <AppBar position="sticky" className="navigationBar">
       <Toolbar>
@@ -24,21 +26,25 @@ function Navigation(props) {
         >
           <Box display="flex" flexDirection="row">
             <Link to="/" style={{ textDecoration: 'none' }}>
-              <Button startIcon={<HomeIcon />}>Home</Button>
+              <Button startIcon={<HomeIcon />}>{labels['LINK_HOME']}</Button>
             </Link>
             {props.user.token != null ? (
               <Box>
                 <Link to="/wines" style={{ textDecoration: 'none' }}>
-                  <Button startIcon={<LocalBarIcon />}>Wines</Button>
+                  <Button startIcon={<LocalBarIcon />}>
+                    {labels['LINK_WINES']}
+                  </Button>
                 </Link>
                 <Link to="/ingredients" style={{ textDecoration: 'none' }}>
                   <Button startIcon={<LocalGroceryStoreIcon />}>
-                    Ingredients
+                    {labels['LINK_INGREDIENTS']}
                   </Button>
                 </Link>
                 {props.user.role == UserRole.ADMIN ? (
                   <Link to="/users" style={{ textDecoration: 'none' }}>
-                    <Button startIcon={<PeopleIcon />}>Users</Button>
+                    <Button startIcon={<PeopleIcon />}>
+                      {labels['LINK_USERS']}
+                    </Button>
                   </Link>
                 ) : (
                   ''
@@ -58,5 +64,6 @@ function Navigation(props) {
 }
 const mapStateToProps = (state) => ({
   user: state.user,
+  settings: state.settings,
 });
 export default connect(mapStateToProps)(Navigation);
