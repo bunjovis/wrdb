@@ -22,7 +22,7 @@ function receiveWines(json) {
     json,
   };
 }
-function clearWines(json) {
+function clearWines() {
   return {
     type: 'CLEAR_WINES',
   };
@@ -50,7 +50,7 @@ function receiveWine(json) {
     json,
   };
 }
-function clearWine(json) {
+function clearWine() {
   return {
     type: 'CLEAR_WINE',
   };

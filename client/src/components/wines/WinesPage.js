@@ -22,7 +22,7 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import { fetchWines } from '../../actions/wines';
 import translations from '../../misc/translations.json';
 
-function IngredientsPage(props) {
+function WinesPage(props) {
   const labels = translations[props.settings.language];
 
   const [page, setPage] = React.useState(0);
@@ -135,4 +135,4 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   fetchWines: (token) => dispatch(fetchWines(token)),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(IngredientsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(WinesPage);
