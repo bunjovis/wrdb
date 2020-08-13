@@ -2,6 +2,7 @@
     "en": {
         "LINK_HOME": "Home",
         "LINK_WINES": "Wines",
+        "LINK_WINES_NEW": "Add new wine",
         "LINK_INGREDIENTS": "Ingredients",
         "LINK_INGREDIENTS_NEW": "Add new ingredient",
         "LINK_INGREDIENTS_EDIT": "Edit ingredient",
@@ -22,6 +23,12 @@
         "LABEL_INGREDIENTS_UNIT": "Unit",
         "LABEL_INGREDIENTS_PRICE": "Price",
         "LABEL_INGREDIENTS_ACTIONS": "Actions",
-        "LABEL_INGREDIENTS_DELETE": "Delete ingredient"
+        "LABEL_INGREDIENTS_DELETE": "Delete ingredient",
+        "LABEL_WINES": "Wines",
+        "LABEL_WINES_EMPTY": "No wines.",
+        "LABEL_WINES_NAME": "Name",
+        "LABEL_WINES_BOTTLINGDATE": "Bottling date",
+        "LABEL_WINES_ALCOHOLCONTENT": "Alcohol content (%)",
+        "LABEL_WINES_ACTIONS": "Actions"
     }
 }
