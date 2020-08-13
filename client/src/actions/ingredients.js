@@ -78,3 +78,41 @@ export function addIngredient(token, ingredient) {
       });
   };
 }
+export function editIngredient(token, id, ingredient) {
+  return (dispatch) => {
+    return fetch('../../api/ingredienttypes/' + id, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      },
+      body: JSON.stringify({
+        name: ingredient.name,
+        unit: ingredient.unit,
+        price: ingredient.price,
+      }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        dispatch(clearIngredient());
+        dispatch(receiveIngredient(json.ingredientType));
+      });
+  };
+}
+export function deleteIngredient(token, id) {
+  return (dispatch) => {
+    return fetch('../../api/ingredienttypes' + id, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {});
+  };
+}

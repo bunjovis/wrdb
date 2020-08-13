@@ -4,6 +4,7 @@
         "LINK_WINES": "Wines",
         "LINK_INGREDIENTS": "Ingredients",
         "LINK_INGREDIENTS_NEW": "Add new ingredient",
+        "LINK_INGREDIENTS_EDIT": "Edit ingredient",
         "LINK_INGREDIENTS_ADD": "Add ingredient",
         "LINK_USERS": "Users",
         "LINK_SETTINGS": "Settings",
@@ -20,6 +21,7 @@
         "LABEL_INGREDIENTS_NAME": "Name",
         "LABEL_INGREDIENTS_UNIT": "Unit",
         "LABEL_INGREDIENTS_PRICE": "Price",
-        "LABEL_INGREDIENTS_ACTIONS": "Actions"
+        "LABEL_INGREDIENTS_ACTIONS": "Actions",
+        "LABEL_INGREDIENTS_DELETE": "Delete ingredient"
     }
 }
