@@ -50,7 +50,7 @@ function AddIngredientPage(props) {
   }
   return (
     <Box>
-      <Typography variant="h2">{labels['LINK_INGREDIENTS_NEW']}</Typography>
+      <Typography variant="h2">{labels['LABEL_INGREDIENTS_NEW']}</Typography>
       <form onSubmit={handleSubmit}>
         <FormGroup style={{ width: '50%', margin: 'auto' }}>
           <TextField

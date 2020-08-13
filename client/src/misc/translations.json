@@ -3,6 +3,9 @@
         "LINK_HOME": "Home",
         "LINK_WINES": "Wines",
         "LINK_WINES_NEW": "Add new wine",
+        "LINK_WINES_ADD": "Add wine",
+        "LINK_WINES_ADD_COMMENT": "Add comment",
+        "LINK_WINES_ADD_LABEL": "Add label",
         "LINK_INGREDIENTS": "Ingredients",
         "LINK_INGREDIENTS_NEW": "Add new ingredient",
         "LINK_INGREDIENTS_EDIT": "Edit ingredient",
@@ -16,6 +19,7 @@
         "LABEL_EMAIL": "Email",
         "LABEL_PASSWORD": "Password",
         "LABEL_INGREDIENTS": "Ingredients",
+        "LABEL_INGREDIENTS_NEW": "Add new ingredient",
         "LABEL_INGREDIENT_SHOW": "Show ingredient",
         "LABEL_INGREDIENTS_EMPTY": "No ingredients.",
         "LABEL_INGREDIENT_EMPTY": "No ingredient.",
@@ -28,6 +32,7 @@
         "LABEL_INGREDIENTS_COMMENT": "Comment",
         "LABEL_INGREDIENTS_COST": "Cost (€)",
         "LABEL_WINES": "Wines",
+        "LABEL_WINES_NEW": "Add new wine",
         "LABEL_WINES_EMPTY": "No wines.",
         "LABEL_WINES_NAME": "Name",
         "LABEL_WINES_INGREDIENTS": "Ingredients",
@@ -46,6 +51,7 @@
         "LABEL_WINES_ACTIONS": "Actions",
         "LABEL_WINE_SHOW": "Show wine",
         "LABEL_WINE_EMPTY": "No wine.",
-        "LABEL_WINE_NO_LABEL": "No label created"
+        "LABEL_WINE_NO_LABEL": "No label created",
+        "LABEL_WINES_LABEL_EDITOR": "Label editor"
     }
 }

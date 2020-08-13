@@ -62,15 +62,11 @@ function ShowWinePage(props) {
         />
         <br />
         {labels['LABEL_WINES_STARTINGDATE']}:{' '}
-        {new Date(props.wine.createdAt).toLocaleDateString(
-          props.settings.language
-        )}
+        {new Date(props.wine.createdAt).toDateString()}
         <br />
         {labels['LABEL_WINES_BOTTLINGDATE']}:{' '}
         {props.wine.bottlingDate
-          ? new Date(props.wine.bottlingDate).toLocaleDateString(
-              props.settings.language
-            )
+          ? new Date(props.wine.bottlingDate).toDateString()
           : labels['LABEL_WINES_NOT_BOTTLED']}
         <br />
         {labels['LABEL_WINES_TOTALCOST']}: {props.wine.totalCost}

@@ -15,6 +15,7 @@ import IngredientsPage from './components/ingredients/IngredientsPage';
 import ShowIngredientPage from './components/ingredients/ShowIngredientPage';
 import WinesPage from './components/wines/WinesPage';
 import ShowWinePage from './components/wines/ShowWinePage';
+import AddWinePage from './components/wines/AddWinePage';
 import './App.css';
 
 const useStyles = makeStyles({
@@ -97,6 +98,7 @@ function App(props) {
               />
               <Route exact path="/wines" component={WinesPage} />
               <Route exact path="/wines/:id/show" component={ShowWinePage} />
+              <Route exact path="/wines/new" component={AddWinePage} />
             </Paper>
           </BrowserRouter>
         </Container>
