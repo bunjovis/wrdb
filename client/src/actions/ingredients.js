@@ -16,6 +16,42 @@ export function fetchIngredients(token) {
       });
   };
 }
+export function fetchIngredients2(token) {
+  return (dispatch) => {
+    return fetch('../api/ingredienttypes', {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        dispatch(clearIngredient());
+        dispatch(clearIngredients());
+        dispatch(receiveIngredients(json.ingredientTypes));
+      });
+  };
+}
+export function fetchIngredients3(token) {
+  return (dispatch) => {
+    return fetch('../../api/ingredienttypes', {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        dispatch(clearIngredient());
+        dispatch(clearIngredients());
+        dispatch(receiveIngredients(json.ingredientTypes));
+      });
+  };
+}
 function receiveIngredients(json) {
   return {
     type: 'RECEIVE_INGREDIENTS',

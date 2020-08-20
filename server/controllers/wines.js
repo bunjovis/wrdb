@@ -1,6 +1,7 @@
 const Wine = require('../models/Wine');
 const Ingredient = require('../models/Ingredient').model;
 const Comment = require('../models/Comment').model;
+const fs = require('fs');
 
 const listWines = (req, res) => {
   Wine.find((err, res2) => res.status(200).json({ wines: res2 }));
@@ -135,6 +136,20 @@ const showWine = (req, res) => {
 
     return res.status(200).json({ wine: doc });
   });
+};
+const addLabel = (req, res) => {
+  const { image, labelId } = req.body;
+  if (image && labelId) {
+    const imageData = image.replace(/^data:image\/\w+;base64,/, '');
+    const buffer = Buffer.from(imageData, 'base64');
+    fs.writeFile(`client/public/img/labels/${labelId}.png`, buffer, (err) => {
+      if (err) {
+        return res.status(500);
+      } else {
+        res.status(200);
+      }
+    });
+  }
 };
 const editWine = (req, res) => {
   const { id } = req.params;
@@ -277,4 +292,5 @@ module.exports = {
   showWine,
   editWine,
   deleteWine,
+  addLabel,
 };

@@ -31,6 +31,7 @@
         "LABEL_INGREDIENTS_AMOUNT": "Amount",
         "LABEL_INGREDIENTS_COMMENT": "Comment",
         "LABEL_INGREDIENTS_COST": "Cost (€)",
+        "LABEL_INGREDIENTS_SELECT": "Select ingredient",
         "LABEL_WINES": "Wines",
         "LABEL_WINES_NEW": "Add new wine",
         "LABEL_WINES_EMPTY": "No wines.",
@@ -52,6 +53,18 @@
         "LABEL_WINE_SHOW": "Show wine",
         "LABEL_WINE_EMPTY": "No wine.",
         "LABEL_WINE_NO_LABEL": "No label created",
-        "LABEL_WINES_LABEL_EDITOR": "Label editor"
+        "LABEL_WINES_LABEL_EDITOR": "Label editor",
+        "LABEL_WINES_NO_INGREDIENTS": "Add at least one ingredient!",
+        "LABEL_WINES_NO_COMMENTS": "No comments yet.",
+        "LABEL_EDITOR_RED": "Red",
+        "LABEL_EDITOR_GREEN": "Green",
+        "LABEL_EDITOR_BLUE": "Blue",
+        "LABEL_EDITOR_NAME": "Name Color",
+        "LABEL_EDITOR_DATE": "Date Color",
+        "LABEL_EDITOR_BG": "Background Color",
+        "LABEL_EDITOR_NAME_FONT": "Name Font",
+        "LABEL_EDITOR_DATE_FONT": "Date Font",
+        "LABEL_EDITOR_FONT_SIZE": "Size",
+        "LABEL_EDITOR_FONT": "Font"
     }
 }

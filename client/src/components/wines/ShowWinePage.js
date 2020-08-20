@@ -13,34 +13,35 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { fetchWine } from '../../actions/wines';
-import { fetchIngredients } from '../../actions/ingredients';
+import { fetchIngredients3 } from '../../actions/ingredients';
 import translations from '../../misc/translations.json';
 
 function ShowWinePage(props) {
+  console.log(props);
   const labels = translations[props.settings.language];
   function getIngredientName(type) {
     const ingredient = props.ingredients.filter(
       (i) => i._id.toString() == type
     )[0];
-    return ingredient.name;
+    return ingredient ? ingredient.name : '';
   }
   function getIngredientUnit(type) {
     const ingredient = props.ingredients.filter(
       (i) => i._id.toString() == type
     )[0];
-    return ingredient.unit;
+    return ingredient ? ingredient.unit : '';
   }
   function getIngredientPrice(type) {
     const ingredient = props.ingredients.filter(
       (i) => i._id.toString() == type
     )[0];
-    return ingredient.price;
+    return ingredient ? ingredient.price : '';
   }
   useEffect(() => {
     props.fetchIngredients(props.user.token);
     props.fetchWine(props.user.token, props.match.params.id);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  if (props.wine == null) {
+  if (props.wine == null || props.ingredients == null) {
     return (
       <Box>
         <Typography variant="h2">{labels['LABEL_WINE_SHOW']}</Typography>
@@ -58,7 +59,7 @@ function ShowWinePage(props) {
         </Typography>
         <img
           width="300"
-          src={'../../img/labels/' + (props.wine.labelId || 'nolabel.png')}
+          src={'../../img/labels/' + (props.wine.labelId || 'nolabel') + '.png'}
         />
         <br />
         {labels['LABEL_WINES_STARTINGDATE']}:{' '}
@@ -150,6 +151,6 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   fetchWine: (token, id) => dispatch(fetchWine(token, id)),
-  fetchIngredients: (token) => dispatch(fetchIngredients(token)),
+  fetchIngredients: (token) => dispatch(fetchIngredients3(token)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ShowWinePage);
