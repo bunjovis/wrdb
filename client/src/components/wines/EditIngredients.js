@@ -88,7 +88,7 @@ function EditIngredients(props) {
           </TableHead>
           <TableBody>
             {selectedIngredients.map((ingredient, index) => (
-              <TableRow>
+              <TableRow key={index}>
                 <TableCell>{getIngredientName(ingredient.type)}</TableCell>
                 <TableCell>{ingredient.amount}</TableCell>
                 <TableCell>{ingredient.comment}</TableCell>

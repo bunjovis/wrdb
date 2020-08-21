@@ -38,7 +38,7 @@ function WinesPage(props) {
   useEffect(() => {
     props.fetchWines(props.user.token);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  console.log(props);
+
   if (props.wines == null || props.wines.length == 0) {
     return (
       <Box>

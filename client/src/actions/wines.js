@@ -88,6 +88,7 @@ export function editWine(token, id, wine) {
         return res.json();
       })
       .then((json) => {
+        console.log(json);
         dispatch(clearWine());
         dispatch(receiveWine(json.wine));
       });

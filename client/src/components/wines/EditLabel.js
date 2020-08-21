@@ -16,7 +16,6 @@ import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 
 function EditLabel(props) {
-  console.log(props.labelId);
   const labels = translations[props.settings.language];
   const fonts = f['fonts'];
   const [labelId, setLabelId] = useState(null);
@@ -191,6 +190,9 @@ function EditLabel(props) {
     options.dateColor.g,
     options.dateColor.b,
   ]);
+  useEffect(() => {
+    setLabelId(props.labelId);
+  }, [props.labelId]);
   return (
     <Box>
       {labelId == null ? (

@@ -65,6 +65,8 @@
         "LABEL_EDITOR_NAME_FONT": "Name Font",
         "LABEL_EDITOR_DATE_FONT": "Date Font",
         "LABEL_EDITOR_FONT_SIZE": "Size",
-        "LABEL_EDITOR_FONT": "Font"
+        "LABEL_EDITOR_FONT": "Font",
+        "LABEL_HOME": "Welcome to Wine Recipe Database!",
+        "LABEL_HOME_TOTAL_WINES": "Total wines in database"
     }
 }

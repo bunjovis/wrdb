@@ -17,7 +17,6 @@ import { fetchIngredients3 } from '../../actions/ingredients';
 import translations from '../../misc/translations.json';
 
 function ShowWinePage(props) {
-  console.log(props);
   const labels = translations[props.settings.language];
   function getIngredientName(type) {
     const ingredient = props.ingredients.filter(

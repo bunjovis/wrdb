@@ -29,6 +29,7 @@ function AddWinePage(props) {
   const [labelId, setLabelId] = useState(null);
   const [isDisabled, setIsDisabled] = useState(true);
   const [alcoholContent, setAlcoholContent] = useState(null);
+  const [totalCost, setTotalCost] = useState(null);
 
   const [redirect, setRedirect] = useState(null);
   const [added, setAdded] = useState(false);

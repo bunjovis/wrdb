@@ -16,6 +16,7 @@ import ShowIngredientPage from './components/ingredients/ShowIngredientPage';
 import WinesPage from './components/wines/WinesPage';
 import ShowWinePage from './components/wines/ShowWinePage';
 import AddWinePage from './components/wines/AddWinePage';
+import EditWinePage from './components/wines/EditWinePage';
 import './App.css';
 
 const useStyles = makeStyles({
@@ -56,7 +57,6 @@ function useDarkMode(toggled) {
   return updatedTheme;
 }
 function App(props) {
-  console.log(props);
   const theme = useDarkMode(props.settings.darkMode);
   const themeConfig = createMuiTheme(theme);
   const classes = useStyles({
@@ -99,6 +99,7 @@ function App(props) {
               <Route exact path="/wines" component={WinesPage} />
               <Route exact path="/wines/:id/show" component={ShowWinePage} />
               <Route exact path="/wines/new" component={AddWinePage} />
+              <Route exact path="/wines/:id/edit" component={EditWinePage} />
             </Paper>
           </BrowserRouter>
         </Container>
