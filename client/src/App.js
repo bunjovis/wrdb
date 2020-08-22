@@ -18,6 +18,7 @@ import WinesPage from './components/wines/WinesPage';
 import ShowWinePage from './components/wines/ShowWinePage';
 import AddWinePage from './components/wines/AddWinePage';
 import EditWinePage from './components/wines/EditWinePage';
+import DeleteWinePage from './components/wines/DeleteWinePage';
 import SettingsPage from './components/settings/SettingsPage';
 import { fetchSettings } from './actions/settings';
 import './App.css';
@@ -122,6 +123,11 @@ function App(props) {
                     exact
                     path="/wines/:id/edit"
                     component={EditWinePage}
+                  />
+                  <Route
+                    exact
+                    path="/wines/:id/delete"
+                    component={DeleteWinePage}
                   />
                   <Route exact path="/settings" component={SettingsPage} />
                 </Box>

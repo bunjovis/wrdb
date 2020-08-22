@@ -1,6 +1,6 @@
 export function fetchWines(token) {
   return (dispatch) => {
-    return fetch('api/wines', {
+    return fetch('../api/wines', {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + token,
@@ -96,16 +96,14 @@ export function editWine(token, id, wine) {
 }
 export function deleteWine(token, id) {
   return (dispatch) => {
-    return fetch('../../api/wines' + id, {
+    return fetch('../../api/wines/' + id, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + token,
       },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((json) => {});
+    }).then((res) => {
+      fetchWines(token);
+    });
   };
 }

@@ -139,7 +139,7 @@ export function editIngredient(token, id, ingredient) {
 }
 export function deleteIngredient(token, id) {
   return (dispatch) => {
-    return fetch('../../api/ingredienttypes' + id, {
+    return fetch('../../api/ingredienttypes/' + id, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

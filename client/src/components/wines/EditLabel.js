@@ -196,7 +196,7 @@ function EditLabel(props) {
   return (
     <Box>
       {labelId == null ? (
-        <Button onClick={handleAddLabel}>Add Label</Button>
+        <Button onClick={handleAddLabel}>{labels['LABEL_EDITOR_ADD']}</Button>
       ) : (
         <Box>
           {props.labelId == null ? (
@@ -212,15 +212,14 @@ function EditLabel(props) {
                 <Box>
                   {img != null ? (
                     <Box>
-                      <Button onClick={() => setImg(null)}>Remove image</Button>{' '}
+                      <Button onClick={() => setImg(null)}>
+                        {labels['LABEL_EDITOR_REMOVE']}
+                      </Button>{' '}
                       <br />
                     </Box>
                   ) : (
-                    <Box>
-                      You can add one image to label by <br />
-                      dragging and dropping it to
-                      <br />
-                      the editor.
+                    <Box style={{ maxWidth: 150 }}>
+                      {labels['LABEL_EDITOR_INSTRUCTIONS']}
                     </Box>
                   )}
                   <IconButton disabled={undos.length == 0} onClick={handleUndo}>
@@ -478,7 +477,7 @@ function EditLabel(props) {
                       props.saveLabelId(labelId);
                     }}
                   >
-                    Save label
+                    {labels['LABEL_EDITOR_SAVE']}
                   </Button>
                 )}
               </Box>

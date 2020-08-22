@@ -91,7 +91,7 @@ function SettingsPage(props) {
         label={labels['LABEL_SETTINGS_DARKMODE']}
       />
       <br />
-      <Typography variant="h4">Winery logo</Typography>
+      <Typography variant="h4">{labels['LABEL_SETTINGS_LOGO']}</Typography>
       <img src="../logo.png" />
       <br />
       <FormControlLabel
@@ -119,7 +119,7 @@ function SettingsPage(props) {
       {validateFileSize(fileSize) ? (
         ''
       ) : (
-        <Alert severity="error">File size too big! (max 5MB)</Alert>
+        <Alert severity="error">{labels['LABEL_SETTINGS_FILE_BIG']}</Alert>
       )}
     </Box>
   );

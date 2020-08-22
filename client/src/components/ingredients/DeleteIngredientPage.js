@@ -23,7 +23,10 @@ function DeleteIngredientPage(props) {
       setRedirect('/ingredients');
     }
   }, [added, props]);
-
+  function handleDelete() {
+    props.deleteIngredient(props.user.token, props.match.params.id);
+    setRedirect('/ingredients');
+  }
   useEffect(() => {
     props.fetchIngredient(props.user.token, props.match.params.id);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -36,12 +39,15 @@ function DeleteIngredientPage(props) {
         <Typography variant="h2">
           {labels['LABEL_INGREDIENTS_DELETE']} {props.ingredient.name}?
         </Typography>
+        <Button onClick={handleDelete}>{labels['LABEL_YES']}</Button>
+        <Button onClick={() => setRedirect('/wines')}>
+          {labels['LABEL_NO']}
+        </Button>
       </Box>
     );
   } else {
     return (
       <Box>
-        <Typography variant="h2">{labels['LABEL_INGREDIENT_SHOW']}</Typography>
         <Alert severity="info">
           <AlertTitle>{labels['LABEL_INFO']}</AlertTitle>
           {labels['LABEL_INGREDIENT_EMPTY']}
