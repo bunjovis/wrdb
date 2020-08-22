@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import Box from '@material-ui/core/Box';
 import { fetchWines } from '../../actions/wines';
@@ -7,10 +7,19 @@ import { Typography } from '@material-ui/core';
 
 function HomePage(props) {
   const labels = translations[props.settings.language];
+  useEffect(() => {
+    props.fetchWines(props.user.token);
+  }, []); //eslint-disable-line
   return (
     <Box>
-      <Typography variant="h2">{labels['LABEL_HOME']}</Typography>
-      {labels['LABEL_HOME_TOTAL_WINES']}: {props.wines.length}
+      {props.wines ? (
+        <Box>
+          <Typography variant="h2">{labels['LABEL_HOME']}</Typography>
+          {labels['LABEL_HOME_TOTAL_WINES']}: {props.wines.length}
+        </Box>
+      ) : (
+        ''
+      )}
     </Box>
   );
 }

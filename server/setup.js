@@ -1,6 +1,7 @@
 require('dotenv').config();
-const User = require('../server/models/User');
-const UserRole = require('../server/models/UserRole');
+const User = require('./models/User');
+const UserRole = require('./models/UserRole');
+const Settings = require('./models/Settings');
 
 User.findOne({ email: process.env.ADMIN_EMAIL }, (err, res) => {
   if (!res) {
@@ -11,5 +12,14 @@ User.findOne({ email: process.env.ADMIN_EMAIL }, (err, res) => {
       role: UserRole.ADMIN,
     });
     admin.save();
+  }
+});
+Settings.find((err, res) => {
+  if (!res[0]) {
+    const settings = new Settings({
+      darkMode: 'true',
+      language: 'en',
+    });
+    settings.save();
   }
 });

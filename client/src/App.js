@@ -6,6 +6,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
 import Navigation from './components/Navigation';
 import HomePage from './components/home/HomePage';
 import AddIngredientPage from './components/ingredients/AddIngredientPage';
@@ -82,33 +83,51 @@ function App(props) {
               square
               elevation={3}
             >
-              <Route exact path="/" component={HomePage} />
-              <Route exact path="/ingredients" component={IngredientsPage} />
-              <Route
-                exact
-                path="/ingredients/:id/show"
-                component={ShowIngredientPage}
-              />
-              <Route
-                exact
-                path="/ingredients/new"
-                component={AddIngredientPage}
-              />
-              <Route
-                exact
-                path="/ingredients/:id/edit"
-                component={EditIngredientPage}
-              />
-              <Route
-                exact
-                path="/ingredients/:id/delete"
-                component={DeleteIngredientPage}
-              />
-              <Route exact path="/wines" component={WinesPage} />
-              <Route exact path="/wines/:id/show" component={ShowWinePage} />
-              <Route exact path="/wines/new" component={AddWinePage} />
-              <Route exact path="/wines/:id/edit" component={EditWinePage} />
-              <Route exact path="/settings" component={SettingsPage} />
+              {props.user.token != null ? (
+                <Box>
+                  <Route exact path="/" component={HomePage} />
+                  <Route
+                    exact
+                    path="/ingredients"
+                    component={IngredientsPage}
+                  />
+                  <Route
+                    exact
+                    path="/ingredients/:id/show"
+                    component={ShowIngredientPage}
+                  />
+                  <Route
+                    exact
+                    path="/ingredients/new"
+                    component={AddIngredientPage}
+                  />
+                  <Route
+                    exact
+                    path="/ingredients/:id/edit"
+                    component={EditIngredientPage}
+                  />
+                  <Route
+                    exact
+                    path="/ingredients/:id/delete"
+                    component={DeleteIngredientPage}
+                  />
+                  <Route exact path="/wines" component={WinesPage} />
+                  <Route
+                    exact
+                    path="/wines/:id/show"
+                    component={ShowWinePage}
+                  />
+                  <Route exact path="/wines/new" component={AddWinePage} />
+                  <Route
+                    exact
+                    path="/wines/:id/edit"
+                    component={EditWinePage}
+                  />
+                  <Route exact path="/settings" component={SettingsPage} />
+                </Box>
+              ) : (
+                ''
+              )}
             </Paper>
           </BrowserRouter>
         </Container>

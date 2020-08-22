@@ -14,12 +14,14 @@ import Alert from '@material-ui/lab/Alert';
 import Button from '@material-ui/core/Button';
 
 function SettingsPage(props) {
+  console.log(props.settings);
   const labels = translations[props.settings.language];
   const languages = Object.getOwnPropertyNames(translations);
   const [file, setFile] = useState(null);
   const [fileSize, setFileSize] = useState(null);
   const [language, setLanguage] = useState(props.settings.language);
   const [darkMode, setDarkMode] = useState(props.settings.darkMode);
+  const [changed, setChanged] = useState(false);
   const fileRef = useRef();
   function handleAddPictureClick(e) {
     if (!file) {
@@ -46,9 +48,30 @@ function SettingsPage(props) {
       return false;
     }
   }
+  function handleLanguageChange(event) {
+    setLanguage(event.target.value);
+    setChanged(true);
+  }
+  function handleDarkModeChange(event) {
+    setDarkMode(!darkMode);
+    setChanged(true);
+  }
+  useEffect(() => {
+    if (changed) {
+      handleSettingsChange();
+      setChanged(false);
+    }
+  }, [language, darkMode]); // eslint-disable-line
+  function handleSettingsChange() {
+    props.saveSettings(props.user.token, { language, darkMode });
+  }
   useEffect(() => {
     props.fetchSettings(props.user.token);
   }, []); // eslint-disable-line
+  useEffect(() => {
+    setDarkMode(props.settings.darkMode);
+    setLanguage(props.settings.language);
+  }, [props.settings]);
   return (
     <Box>
       <Typography variant="h2">{labels['LABEL_SETTINGS']}</Typography>
@@ -56,7 +79,7 @@ function SettingsPage(props) {
         <InputLabel htmlFor="language">
           {labels['LABEL_SETTINGS_LANGUAGE']}
         </InputLabel>
-        <Select id="language" value={props.settings.language}>
+        <Select id="language" value={language} onChange={handleLanguageChange}>
           {languages.map((language) => (
             <MenuItem value={language}>{language}</MenuItem>
           ))}
@@ -64,7 +87,7 @@ function SettingsPage(props) {
       </FormControl>
       <br />
       <FormControlLabel
-        control={<Switch />}
+        control={<Switch checked={darkMode} onChange={handleDarkModeChange} />}
         label={labels['LABEL_SETTINGS_DARKMODE']}
       />
       <br />
