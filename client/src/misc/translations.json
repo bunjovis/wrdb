@@ -67,6 +67,11 @@
         "LABEL_EDITOR_FONT_SIZE": "Size",
         "LABEL_EDITOR_FONT": "Font",
         "LABEL_HOME": "Welcome to Wine Recipe Database!",
-        "LABEL_HOME_TOTAL_WINES": "Total wines in database"
+        "LABEL_HOME_TOTAL_WINES": "Total wines in database",
+        "LABEL_SETTINGS": "Settings",
+        "LABEL_SETTINGS_LANGUAGE": "Select language",
+        "LABEL_SETTINGS_DARKMODE": "Dark mode",
+        "LABEL_SETTINGS_UPLOAD": "Upload new picture",
+        "LABEL_SETTINGS_SAVE": "Save picture"
     }
 }

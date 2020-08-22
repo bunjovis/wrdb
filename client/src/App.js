@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Route, BrowserRouter } from 'react-router-dom';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
@@ -17,6 +17,8 @@ import WinesPage from './components/wines/WinesPage';
 import ShowWinePage from './components/wines/ShowWinePage';
 import AddWinePage from './components/wines/AddWinePage';
 import EditWinePage from './components/wines/EditWinePage';
+import SettingsPage from './components/settings/SettingsPage';
+import { fetchSettings } from './actions/settings';
 import './App.css';
 
 const useStyles = makeStyles({
@@ -56,7 +58,13 @@ function useDarkMode(toggled) {
   };
   return updatedTheme;
 }
+
 function App(props) {
+  useEffect(() => {
+    if (props.user.token) {
+      props.fetchSettings(props.user.token);
+    }
+  }, []); //eslint-disable-line
   const theme = useDarkMode(props.settings.darkMode);
   const themeConfig = createMuiTheme(theme);
   const classes = useStyles({
@@ -100,6 +108,7 @@ function App(props) {
               <Route exact path="/wines/:id/show" component={ShowWinePage} />
               <Route exact path="/wines/new" component={AddWinePage} />
               <Route exact path="/wines/:id/edit" component={EditWinePage} />
+              <Route exact path="/settings" component={SettingsPage} />
             </Paper>
           </BrowserRouter>
         </Container>
@@ -109,6 +118,10 @@ function App(props) {
 }
 const mapStateToProps = (state) => ({
   settings: state.settings,
+  user: state.user,
+});
+const mapDispatchToProps = (dispatch) => ({
+  fetchSettings: (token) => dispatch(fetchSettings(token)),
 });
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
