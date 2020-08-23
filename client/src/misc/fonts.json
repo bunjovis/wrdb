@@ -1,0 +1,21 @@
+{
+    "info": "Web safe fonts list from https://websitesetup.org/web-safe-fonts-html-css/",
+    "fonts": [
+        "Arial",
+        "Arial Black",
+        "Bookman",
+        "Calibri",
+        "Candara",
+        "Comic Sans MS",
+        "Courier",
+        "Courier New",
+        "Garamond",
+        "Georgia",
+        "Impact",
+        "Palatino",
+        "Roboto",
+        "Times",
+        "Times New Roman",
+        "Verdana"
+    ]
+}

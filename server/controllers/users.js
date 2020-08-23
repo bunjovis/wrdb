@@ -1,11 +1,11 @@
-const User = require('../models/User');
-const UserRole = require('../models/UserRole');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const User = require('../models/User');
+const UserRole = require('../models/UserRole');
 
 const login = (req, res) => {
   const { email, password } = req.body;
-  User.findOne({ email: email }, (err, doc) => {
+  User.findOne({ email }, (err, doc) => {
     if (err || !doc) {
       return res.status(401).json({ message: 'Login failed' });
     } else {
@@ -17,7 +17,8 @@ const login = (req, res) => {
             const token = jwt.sign({ id: doc._id }, process.env.SECRET);
             return res.status(200).json({
               message: 'Login succesful',
-              token: token,
+              token,
+              user: doc,
             });
           } else {
             return res.status(401).json({ message: 'Login failed' });
@@ -29,9 +30,7 @@ const login = (req, res) => {
 };
 const listUsers = (req, res) => {
   if (req.userRole === UserRole.ADMIN) {
-    User.find((err, res2) => {
-      return res.status(200).json({ users: res2 });
-    });
+    User.find((err, res2) => res.status(200).json({ users: res2 }));
   } else {
     return res.status(401).json({ message: 'Unauthorized' });
   }
@@ -40,8 +39,8 @@ const addUser = (req, res) => {
   if (req.userRole === UserRole.ADMIN) {
     const { name, email, password, role } = req.body;
     const user = new User({
-      name: name,
-      email: email,
+      name,
+      email,
       password,
       role,
     });
@@ -57,7 +56,7 @@ const addUser = (req, res) => {
   }
 };
 const showUser = (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   if (req.userRole === UserRole.ADMIN || id === req.userId) {
     User.findOne({ _id: id }, (err, doc) => {
       if (err) {
@@ -74,7 +73,7 @@ const showUser = (req, res) => {
   }
 };
 const editUser = (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   if (req.userRole === UserRole.ADMIN || id === req.userId) {
     const { name, email, password, role } = req.body;
     User.findById(id, (err, doc) => {
@@ -120,7 +119,7 @@ const editUser = (req, res) => {
   }
 };
 const deleteUser = (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   if (req.userRole === UserRole.ADMIN || id === req.userId) {
     User.findByIdAndRemove(id, (err, doc) => {
       if (!doc) {

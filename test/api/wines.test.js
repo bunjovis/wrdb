@@ -96,7 +96,14 @@ describe('/api/wines', function () {
     beforeEach(function () {
       perunaviina = {
         name: 'Perunaviina',
-        ingredients: [kiloperunaa],
+        ingredients: [
+          {
+            type: peruna._id.toString(),
+            amount: 1.0,
+            comment:
+              'Murskaa peruna oikein hienoksi, että saat varmasti kaiken hyvän perunanmaun viiniin',
+          },
+        ],
         totalCost: peruna.price * kiloperunaa.amount,
         startingGravity: 1090,
         startingVolume: 25,
