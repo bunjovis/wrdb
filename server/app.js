@@ -39,7 +39,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve('client', 'build', 'index.html'));
 });
 
-app.listen(port, '0.0.0.0' () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`Listening on port ${port}`);
 });
 
