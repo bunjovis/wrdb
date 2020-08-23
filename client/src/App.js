@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route, BrowserRouter, Redirect } from 'react-router-dom';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
@@ -62,21 +62,39 @@ function useDarkMode(toggled) {
 }
 
 function App(props) {
+  const [redirect, setRedirect] = useState(null);
+  const [redirected, setRedirected] = useState(false);
   useEffect(() => {
     if (props.user.token) {
       props.fetchSettings(props.user.token);
     }
+    window.addEventListener('keyup', (event) => {
+      if (event.key === 'F1') {
+        setRedirect('/wines/new');
+        setRedirected(true);
+      }
+      if (event.key === 'F2') {
+        setRedirect('/ingredients/new');
+        setRedirected(true);
+      }
+    });
   }, []); //eslint-disable-line
   const theme = useDarkMode(props.settings.darkMode);
   const themeConfig = createMuiTheme(theme);
   const classes = useStyles({
     bgcolor: themeConfig.palette.background.default,
   });
+  if (redirected) {
+    setRedirected(false);
+    setRedirect(null);
+  }
+
   return (
     <ThemeProvider theme={themeConfig}>
       <div className={classes.App}>
         <Container>
           <BrowserRouter>
+            {redirect ? <Redirect to={redirect} /> : ''}
             <Navigation />
             <Paper
               className={classes.content}
