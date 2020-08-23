@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
+const sanitizerPlugin = require('mongoose-sanitizer-plugin');
 const Ingredient = require('./Ingredient.js').schema;
 const Comment = require('./Comment.js').schema;
-const sanitizerPlugin = require('mongoose-sanitizer-plugin');
 
 const wineSchema = mongoose.Schema(
   {
@@ -15,9 +15,7 @@ const wineSchema = mongoose.Schema(
     ingredients: {
       type: [Ingredient],
       required: true,
-      validate: (arr) => {
-        return Array.isArray(arr) && arr.length > 0;
-      },
+      validate: (arr) => Array.isArray(arr) && arr.length > 0,
     },
     totalCost: {
       type: Number,
