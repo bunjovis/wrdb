@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 function connect(dbConfig) {
   mongoose
     .connect(
-      `mongodb://${
+      `mongodb+srv://${
         dbConfig.user ? `${dbConfig.user}:${dbConfig.password}@` : ''
       }${dbConfig.host}:${dbConfig.port}/${dbConfig.db}`,
       {
