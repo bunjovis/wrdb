@@ -3,11 +3,14 @@ const Settings = require('../models/Settings');
 const showSettings = (req, res) => {
   Settings.find((err, res2) => {
     if (res2 && res2.length === 1) {
-      return res.status(200).json(res2[0]);
+      console.log(res2);
+      return res.status(200).json({ settings: res2[0] });
     } else {
       return res.status(200).json({
-        darkMode: true,
-        language: 'en',
+        settings: {
+          darkMode: true,
+          language: 'en',
+        },
       });
     }
   });
