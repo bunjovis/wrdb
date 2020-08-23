@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "test": "nyc --reporter=html --reporter=text mocha --recursive test/**/*.test.js --exit --timeout 10000",
-    "client": "cd client && yarn && yarn run build",
+    "client": "cd client && yarn && yarn build",
     "dev": "env NODE_ENV=dev concurrently \"nodemon server/app.js\" \"cd client && yarn start\"",
     "start": "yarn run client && node server/app.js",
     "lint": "eslint server && cd client && eslint src",

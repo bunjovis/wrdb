@@ -23,7 +23,7 @@ let port;
 if (process.env.NODE_ENV === 'dev') {
   port = 3001;
 } else {
-  port = 3000;
+  port = process.env.PORT || 3000;
 }
 // Use helmet middleware
 app.use(helmet());
@@ -39,7 +39,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve('client', 'build', 'index.html'));
 });
 
-app.listen(process.env.PORT || port, () => {
+app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
