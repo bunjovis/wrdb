@@ -22,7 +22,9 @@ function SettingsPage(props) {
   const [language, setLanguage] = useState(props.settings.language);
   const [darkMode, setDarkMode] = useState(props.settings.darkMode);
   const [changed, setChanged] = useState(false);
+  const [added, setAdded] = useState(null);
   const fileRef = useRef();
+  console.log(added);
   function handleAddPictureClick(e) {
     if (!file) {
       fileRef.current.click();
@@ -31,6 +33,19 @@ function SettingsPage(props) {
     }
   }
   function handleSavePicture(e) {
+    const form = new FormData();
+    form.append('image', file);
+    fetch('../api/settings/logo', {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + props.user.token },
+      body: form,
+    }).then((res) => {
+      if (res.status == 200) {
+        setAdded(true);
+      } else {
+        setAdded(false);
+      }
+    });
     fileRef.current.value = '';
     setFile(null);
     setFileSize(null);
@@ -92,7 +107,13 @@ function SettingsPage(props) {
       />
       <br />
       <Typography variant="h4">{labels['LABEL_SETTINGS_LOGO']}</Typography>
-      <img src="../logo.png" />
+      {added == null ? (
+        <img src="../logo.png" />
+      ) : added === true ? (
+        labels['LABEL_SETTINGS_ADDED']
+      ) : (
+        labels['LABEL_SETTINGS_FAILED']
+      )}
       <br />
       <FormControlLabel
         label={file ? file.name : null}

@@ -80,6 +80,8 @@
         "LABEL_SETTINGS_SAVE": "Save picture",
         "LABEL_SETTINGS_LOGO": "Winery logo",
         "LABEL_SETTINGS_FILE_BIG": "File size too big! (max 5MB)",
+        "LABEL_SETTINGS_ADDED": "Picture added! Refresh page to see it",
+        "LABEL_SETTINGS_FAILED": "Adding picture failed",
         "LABEL_YES": "Yes",
         "LABEL_NO": "No"
     },
@@ -164,6 +166,8 @@
         "LABEL_SETTINGS_SAVE": "Tallenna kuva",
         "LABEL_SETTINGS_LOGO": "Viinitilan logo",
         "LABEL_SETTINGS_FILE_BIG": "Tiedosto on liian suuri! (max 5MB)",
+        "LABEL_SETTINGS_ADDED": "Kuva lisätty! Päivitä sivu nähdäksesi uuden kuvan",
+        "LABEL_SETTINGS_FAILED": "Kuvan lisääminen epäonnistui",
         "LABEL_YES": "Kyllä",
         "LABEL_NO": "Ei"
     }

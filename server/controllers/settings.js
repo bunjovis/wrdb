@@ -29,8 +29,16 @@ const setSettings = (req, res) => {
     }
   });
 };
+const addLogo = (req, res) => {
+  if (req.file) {
+    return res.status(200).json({ message: 'Logo added' });
+  } else {
+    return res.status(500).json({ message: 'Error occured' });
+  }
+};
 
 module.exports = {
   showSettings,
   setSettings,
+  addLogo,
 };
