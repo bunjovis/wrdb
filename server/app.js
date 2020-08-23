@@ -4,6 +4,7 @@ const path = require('path');
 const db = require('./db');
 const routes = require('./routes');
 require('dotenv').config();
+
 const app = express();
 
 // Open MongoDB connection
@@ -38,7 +39,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve('client', 'build', 'index.html'));
 });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Listening on port ${port}`);
 });
 
