@@ -75,7 +75,7 @@ function AddWinePage(props) {
     }
   };
   function estimateAlcoholContent(sg, fg) {
-    return (sg - fg) / 7.5;
+    return (sg - fg) / 7.5; // https://www.lappo.fi/page/16/ominaispanomittarin-kaytto
   }
   const handleChangeName = (event) => {
     setName(event.target.value);

@@ -14,7 +14,6 @@ import Alert from '@material-ui/lab/Alert';
 import Button from '@material-ui/core/Button';
 
 function SettingsPage(props) {
-  console.log(props.settings);
   const labels = translations[props.settings.language];
   const languages = Object.getOwnPropertyNames(translations);
   const [file, setFile] = useState(null);
@@ -24,7 +23,6 @@ function SettingsPage(props) {
   const [changed, setChanged] = useState(false);
   const [added, setAdded] = useState(null);
   const fileRef = useRef();
-  console.log(added);
   function handleAddPictureClick(e) {
     if (!file) {
       fileRef.current.click();
