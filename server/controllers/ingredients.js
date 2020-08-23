@@ -48,7 +48,7 @@ const editIngredient = (req, res) => {
     if (comment && comment !== '') {
       doc.comment = comment;
     }
-    if (comment == '' || comment == ' ') {
+    if (comment === '' || comment === ' ') {
       return res.status(500).json({ message: 'Error occured', error: err });
     }
 

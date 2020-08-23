@@ -6,11 +6,9 @@ import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import TableFooter from '@material-ui/core/TableFooter';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { fetchWine } from '../../actions/wines';
 import { fetchIngredients3 } from '../../actions/ingredients';
@@ -20,19 +18,19 @@ function ShowWinePage(props) {
   const labels = translations[props.settings.language];
   function getIngredientName(type) {
     const ingredient = props.ingredients.filter(
-      (i) => i._id.toString() == type
+      (i) => i._id.toString() === type
     )[0];
     return ingredient ? ingredient.name : '';
   }
   function getIngredientUnit(type) {
     const ingredient = props.ingredients.filter(
-      (i) => i._id.toString() == type
+      (i) => i._id.toString() === type
     )[0];
     return ingredient ? ingredient.unit : '';
   }
   function getIngredientPrice(type) {
     const ingredient = props.ingredients.filter(
-      (i) => i._id.toString() == type
+      (i) => i._id.toString() === type
     )[0];
     return ingredient ? ingredient.price : '';
   }
@@ -57,6 +55,7 @@ function ShowWinePage(props) {
           {labels['LABEL_WINE_SHOW']} {props.wine.name}
         </Typography>
         <img
+          alt="label"
           width="300"
           src={'../../img/labels/' + (props.wine.labelId || 'nolabel') + '.png'}
         />

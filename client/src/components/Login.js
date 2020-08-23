@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Link from 'react-router-dom/Link';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
 import { connect } from 'react-redux';
 import FormGroup from '@material-ui/core/FormGroup';
 import Button from '@material-ui/core/Button';
@@ -36,7 +35,7 @@ function Login(props) {
     <Box>
       {props.user.token == null ? (
         <Box>
-          {props.message == 'Login failed' ? props.message : ''}
+          {props.message === 'Login failed' ? props.message : ''}
           <form onSubmit={handleSubmit}>
             <FormGroup row>
               <TextField
@@ -56,7 +55,7 @@ function Login(props) {
                 onChange={handleChangePassword}
               />
               <Button
-                disabled={email == '' || password == ''}
+                disabled={email === '' || password === ''}
                 type="submit"
                 startIcon={<LockOpenIcon />}
               >

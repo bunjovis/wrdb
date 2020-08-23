@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const IngredientType = require('./IngredientType').model;
 const sanitizerPlugin = require('mongoose-sanitizer-plugin');
 
 const ingredientSchema = mongoose.Schema({

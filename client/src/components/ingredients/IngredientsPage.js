@@ -14,7 +14,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -39,7 +38,7 @@ function IngredientsPage(props) {
     props.fetchIngredients(props.user.token);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   console.log(props);
-  if (props.ingredients == null || props.ingredients.length == 0) {
+  if (props.ingredients === null || props.ingredients.length === 0) {
     return (
       <Box>
         <Typography variant="h2">{labels['LABEL_INGREDIENTS']}</Typography>
@@ -56,9 +55,6 @@ function IngredientsPage(props) {
       </Box>
     );
   } else {
-    const emptyRows =
-      rowsPerPage -
-      Math.min(rowsPerPage, props.ingredients.length - page * rowsPerPage);
     return (
       <Box>
         <Typography variant="h2">{labels['LABEL_INGREDIENTS']}</Typography>

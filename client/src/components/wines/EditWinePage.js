@@ -3,16 +3,12 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import Alert from '@material-ui/lab/Alert';
-import AlertTitle from '@material-ui/lab/AlertTitle';
-import { addWine } from '../../actions/wines';
 import { fetchIngredients3 } from '../../actions/ingredients';
 import { fetchWine, editWine } from '../../actions/wines';
 import translations from '../../misc/translations.json';
 import FormGroup from '@material-ui/core/FormGroup';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Input from '@material-ui/core/Input';
 import EditIngredients from './EditIngredients';
 import EditComments from './EditComments';
 import EditLabel from './EditLabel';
@@ -38,7 +34,7 @@ function EditWinePage(props) {
   }
   function getIngredientPrice(type) {
     const ingredient = props.ingredients.filter(
-      (i) => i._id.toString() == type
+      (i) => i._id.toString() === type
     )[0];
     return ingredient.price;
   }

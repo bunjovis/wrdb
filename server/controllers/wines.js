@@ -1,7 +1,7 @@
+const fs = require('fs');
 const Wine = require('../models/Wine');
 const Ingredient = require('../models/Ingredient').model;
 const Comment = require('../models/Comment').model;
-const fs = require('fs');
 
 const listWines = (req, res) => {
   Wine.find((err, res2) => res.status(200).json({ wines: res2 }));
@@ -38,8 +38,8 @@ const addWine = (req, res) => {
           });
         } else {
           newIngredients.push(prod);
-          i++;
-          if (i == len) {
+          i += 1;
+          if (i === len) {
             const newWine = {
               name,
               ingredients: newIngredients,
@@ -75,8 +75,8 @@ const addWine = (req, res) => {
                     });
                   } else {
                     newComments.push(prod2);
-                    j++;
-                    if (j == len2) {
+                    j += 1;
+                    if (j === len2) {
                       newWine.comments = newComments;
                       if (labelId) {
                         newWine.labelId = labelId;
@@ -177,7 +177,7 @@ const editWine = (req, res) => {
     if (name && name !== '') {
       doc.name = name;
     }
-    if (name == '' || name == ' ') {
+    if (name === '' || name === ' ') {
       return res.status(500).json({ message: 'Error occured', error: err });
     }
     if (ingredients) {
@@ -198,12 +198,12 @@ const editWine = (req, res) => {
           } else {
             newIngredients.push(ingredient);
           }
-          i++;
+          i += 1;
 
-          if (i == len) {
+          if (i === len) {
             await new Promise((resolve) => {
               const interval = setInterval(() => {
-                if (newIngredients.length == len) {
+                if (newIngredients.length === len) {
                   resolve();
                   clearInterval(interval);
                 }
@@ -211,13 +211,13 @@ const editWine = (req, res) => {
             });
             console.log(newIngredients);
             doc.ingredients = newIngredients;
-            if (totalCost == '') {
+            if (totalCost === '') {
               return res
                 .status(500)
                 .json({ message: 'Error occured', error: err });
             }
             if (totalCost) {
-              if (isNaN(totalCost)) {
+              if (Number.isNaN(totalCost)) {
                 return res
                   .status(500)
                   .json({ message: 'Error occured', error: err });
@@ -225,7 +225,7 @@ const editWine = (req, res) => {
                 doc.totalCost = totalCost;
               }
             }
-            if (startingGravity == '') {
+            if (startingGravity === '') {
               return res
                 .status(500)
                 .json({ message: 'Error occured', error: err });
@@ -236,7 +236,7 @@ const editWine = (req, res) => {
             if (finalGravity) {
               doc.finalGravity = finalGravity;
             }
-            if (startingVolume == '') {
+            if (startingVolume === '') {
               return res
                 .status(500)
                 .json({ message: 'Error occured', error: err });
@@ -270,11 +270,11 @@ const editWine = (req, res) => {
                 } else {
                   newComments.push(comment);
                 }
-                j++;
-                if (j == len2) {
+                j += 1;
+                if (j === len2) {
                   await new Promise((resolve) => {
                     const interval = setInterval(() => {
-                      if (newComments.length == len2) {
+                      if (newComments.length === len2) {
                         resolve();
                         clearInterval(interval);
                       }

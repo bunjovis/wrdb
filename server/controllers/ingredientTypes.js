@@ -1,9 +1,9 @@
 const IngredientType = require('../models/IngredientType').model;
 
 const listIngredientTypes = (req, res) => {
-  IngredientType.find((err, res2) => {
-    return res.status(200).json({ ingredientTypes: res2 });
-  });
+  IngredientType.find(
+    (err, res2) => res.status(200).json({ ingredientTypes: res2 }) //eslint-disable-line
+  );
 };
 const addIngredientType = (req, res) => {
   const { name, unit, price } = req.body;
@@ -19,7 +19,7 @@ const addIngredientType = (req, res) => {
   });
 };
 const showIngredientType = (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   IngredientType.findOne({ _id: id }, (err, doc) => {
     if (err) {
       return res.status(500).json({ message: 'Error occured', error: err });
@@ -32,7 +32,7 @@ const showIngredientType = (req, res) => {
   });
 };
 const editIngredientType = (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   const { name, unit, price } = req.body;
   IngredientType.findById(id, (err, doc) => {
     if (err) {
@@ -45,16 +45,16 @@ const editIngredientType = (req, res) => {
     if (name && name !== '') {
       doc.name = name;
     }
-    if (name == '' || name == ' ') {
+    if (name === '' || name === ' ') {
       return res.status(500).json({ message: 'Error occured', error: err });
     }
     if (unit && unit !== '') {
       doc.unit = unit;
     }
-    if (unit == '' || unit == ' ') {
+    if (unit === '' || unit === ' ') {
       return res.status(500).json({ message: 'Error occured', error: err });
     }
-    if (price && isNaN(price)) {
+    if (price && Number.isNaN(price)) {
       return res.status(500).json({ message: 'Error occured', error: err });
     }
     if (price) {
@@ -69,7 +69,7 @@ const editIngredientType = (req, res) => {
   });
 };
 const deleteIngredientType = (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
   IngredientType.findByIdAndRemove(id, (err, doc) => {
     if (!doc) {
       return res.status(500).json({ message: 'Ingredient type not found' });

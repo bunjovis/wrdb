@@ -222,10 +222,16 @@ function EditLabel(props) {
                       {labels['LABEL_EDITOR_INSTRUCTIONS']}
                     </Box>
                   )}
-                  <IconButton disabled={undos.length == 0} onClick={handleUndo}>
+                  <IconButton
+                    disabled={undos.length === 0}
+                    onClick={handleUndo}
+                  >
                     <UndoIcon />
                   </IconButton>
-                  <IconButton disabled={redos.length == 0} onClick={handleRedo}>
+                  <IconButton
+                    disabled={redos.length === 0}
+                    onClick={handleRedo}
+                  >
                     <RedoIcon />
                   </IconButton>
                   <br />
@@ -484,7 +490,10 @@ function EditLabel(props) {
             </Box>
           ) : (
             <Box>
-              <img src={'../../img/labels/' + props.labelId + '.png'} />
+              <img
+                alt="label"
+                src={'../../img/labels/' + props.labelId + '.png'}
+              />
               <br />
               <Button
                 onClick={() => {

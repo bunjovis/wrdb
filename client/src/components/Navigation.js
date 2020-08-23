@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom/';
 import { connect } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
@@ -40,7 +40,7 @@ function Navigation(props) {
                     {labels['LINK_INGREDIENTS']}
                   </Button>
                 </Link>
-                {props.user.role == UserRole.ADMIN ? (
+                {props.user.role === UserRole.ADMIN ? (
                   <Link to="/users" style={{ textDecoration: 'none' }}>
                     <Button startIcon={<PeopleIcon />}>
                       {labels['LINK_USERS']}

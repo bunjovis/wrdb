@@ -6,7 +6,11 @@
     "node": true,
     "mocha": true
   },
-  "extends": ["prettier", "airbnb-base", "plugin:mocha/recommended"],
+  "extends": [
+    "prettier",
+    "airbnb-base",
+    "plugin:mocha/recommended"
+  ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -17,7 +21,10 @@
     },
     "ecmaVersion": 2018
   },
-  "plugins": ["prettier", "mocha"],
+  "plugins": [
+    "prettier",
+    "mocha"
+  ],
   "rules": {
     "linebreak-style": 0,
     "prettier/prettier": "error",
@@ -36,7 +43,7 @@
       {
         "varsIgnorePattern": "should|expect"
       }
-    ]
+    ],
+    "no-param-reassign": 0
   }
 }
-

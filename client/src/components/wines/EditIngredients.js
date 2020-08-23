@@ -4,11 +4,8 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import TableFooter from '@material-ui/core/TableFooter';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import FormGroup from '@material-ui/core/FormGroup';
 import Select from '@material-ui/core/Select';
@@ -30,15 +27,9 @@ function EditIngredients(props) {
 
   function getIngredientName(type) {
     const ingredient = props.ingredients.filter(
-      (i) => i._id.toString() == type
+      (i) => i._id.toString() === type
     )[0];
     return ingredient.name;
-  }
-  function getIngredientUnit(type) {
-    const ingredient = props.ingredients.filter(
-      (i) => i._id.toString() == type
-    )[0];
-    return ingredient.unit;
   }
   function handleChangeAmount(event) {
     setAmount(event.target.value);

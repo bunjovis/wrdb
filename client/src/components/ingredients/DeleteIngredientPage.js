@@ -7,10 +7,7 @@ import Alert from '@material-ui/lab/Alert';
 import AlertTitle from '@material-ui/lab/AlertTitle';
 import { fetchIngredient, deleteIngredient } from '../../actions/ingredients';
 import translations from '../../misc/translations.json';
-import FormGroup from '@material-ui/core/FormGroup';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Input from '@material-ui/core/Input';
 
 function DeleteIngredientPage(props) {
   const labels = translations[props.settings.language];

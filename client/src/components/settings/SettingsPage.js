@@ -40,7 +40,7 @@ function SettingsPage(props) {
       headers: { Authorization: 'Bearer ' + props.user.token },
       body: form,
     }).then((res) => {
-      if (res.status == 200) {
+      if (res.status === 200) {
         setAdded(true);
       } else {
         setAdded(false);
@@ -108,7 +108,7 @@ function SettingsPage(props) {
       <br />
       <Typography variant="h4">{labels['LABEL_SETTINGS_LOGO']}</Typography>
       {added == null ? (
-        <img src="../logo.png" />
+        <img alt="logo" src="../logo.png" />
       ) : added === true ? (
         labels['LABEL_SETTINGS_ADDED']
       ) : (

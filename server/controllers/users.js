@@ -87,19 +87,19 @@ const editUser = (req, res) => {
       if (name && name !== '') {
         doc.name = name;
       }
-      if (name == '' || name == ' ') {
+      if (name === '' || name === ' ') {
         return res.status(500).json({ message: 'Error occured', error: err });
       }
       if (email && email !== '') {
         doc.email = email;
       }
-      if (email == '' || email == ' ') {
+      if (email === '' || email === ' ') {
         return res.status(500).json({ message: 'Error occured', error: err });
       }
       if (password && password !== '') {
         doc.password = password;
       }
-      if (password == '' || password == ' ') {
+      if (password === '' || password === ' ') {
         return res.status(500).json({ message: 'Error occured', error: err });
       }
       if (role && role !== '') {

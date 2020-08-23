@@ -27,9 +27,11 @@ const userSchema = mongoose.Schema({
     required: true,
     minlength: 1,
     set: (password) => {
-      return !password || password.length === 0
-        ? password
-        : bcrypt.hashSync(password, parseInt(process.env.SALT));
+      if (!password || password.length === 0) {
+        return password;
+      } else {
+        return bcrypt.hashSync(password, parseInt(process.env.SALT, 10));
+      }
     },
   },
   role: {

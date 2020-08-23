@@ -3,14 +3,11 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import Alert from '@material-ui/lab/Alert';
-import AlertTitle from '@material-ui/lab/AlertTitle';
 import { fetchIngredient, editIngredient } from '../../actions/ingredients';
 import translations from '../../misc/translations.json';
 import FormGroup from '@material-ui/core/FormGroup';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Input from '@material-ui/core/Input';
 
 function EditIngredientPage(props) {
   const labels = translations[props.settings.language];
