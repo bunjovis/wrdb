@@ -2,12 +2,17 @@ const mongoose = require('mongoose');
 
 function connect(dbConfig) {
   mongoose
-    .connect(`mongodb://${dbConfig.host}:${dbConfig.port}/${dbConfig.db}`, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
-    })
+    .connect(
+      `mongodb://${
+        dbConfig.user ? `${dbConfig.user}:${dbConfig.password}@` : ''
+      }${dbConfig.host}:${dbConfig.port}/${dbConfig.db}`,
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+        useCreateIndex: true,
+      }
+    )
     .then(() => {
       mongoose.connection.on('error', (err) => {
         console.log(err);
