@@ -15,7 +15,7 @@ User.findOne({ email: process.env.ADMIN_EMAIL }, (err, res) => {
   }
 });
 Settings.find((err, res) => {
-  if (!res[0]) {
+  if (!res || res.length == 0) {
     const settings = new Settings({
       darkMode: 'true',
       language: 'en',
