@@ -86,8 +86,16 @@ function WinesPage(props) {
                 .map((wine) => (
                   <TableRow key={wine._id}>
                     <TableCell>{wine.name}</TableCell>
-                    <TableCell>{wine.bottlingDate}</TableCell>
-                    <TableCell>{wine.alcoholContent}</TableCell>
+                    <TableCell>
+                      {wine.bottlingDate
+                        ? new Date(wine.bottlingDate).toDateString()
+                        : ''}
+                    </TableCell>
+                    <TableCell>
+                      {wine.alcoholContent
+                        ? wine.alcoholContent.toFixed(1)
+                        : ''}
+                    </TableCell>
                     <TableCell align="right">
                       <Link to={'/wines/' + wine._id + '/show'}>
                         <IconButton color="primary">

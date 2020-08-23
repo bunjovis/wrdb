@@ -82,7 +82,9 @@ function ShowWinePage(props) {
         {props.wine.finalVolume || labels['LABEL_WINES_NOT_BOTTLED']}
         <br />
         {labels['LABEL_WINES_ALCOHOLCONTENT']}:{' '}
-        {props.wine.alcoholContent || labels['LABEL_WINES_NOT_BOTTLED']}
+        {props.wine.alcoholContent
+          ? props.wine.alcoholContent.toFixed(1)
+          : labels['LABEL_WINES_NOT_BOTTLED']}
         <br />
         <Typography variant="h4">
           {labels['LABEL_WINES_INGREDIENTS']}

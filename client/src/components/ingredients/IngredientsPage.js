@@ -99,11 +99,15 @@ function IngredientsPage(props) {
                           <EditIcon />
                         </IconButton>
                       </Link>
-                      <Link to={'/ingredients/' + ingredient._id + '/delete'}>
-                        <IconButton color="primary">
-                          <DeleteIcon />
-                        </IconButton>
-                      </Link>
+                      {false ? (
+                        <Link to={'/ingredients/' + ingredient._id + '/delete'}>
+                          <IconButton color="primary">
+                            <DeleteIcon />
+                          </IconButton>
+                        </Link>
+                      ) : (
+                        ''
+                      )}
                     </TableCell>
                   </TableRow>
                 ))}
