@@ -13,6 +13,12 @@ const dbConfig = {
   port: process.env.DB_PORT,
   db: process.env.DB,
 };
+if (process.env.DB_USER) {
+  dbConfig.user = process.env.DB_USER;
+}
+if (process.env.DB_PASSWORD) {
+  dbConfig.password = process.env.DB_PASSWORD;
+}
 db.connect(dbConfig);
 
 // Run setup script
