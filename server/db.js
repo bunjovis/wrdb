@@ -3,9 +3,11 @@ const mongoose = require('mongoose');
 function connect(dbConfig) {
   mongoose
     .connect(
-      `mongodb+srv://${
+      `mongodb${dbConfig.user ? '+srv' : ''}://${
         dbConfig.user ? `${dbConfig.user}:${dbConfig.password}@` : ''
-      }${dbConfig.host}:${dbConfig.port}/${dbConfig.db}`,
+      }${dbConfig.host}${dbConfig.user ? '' : `:${dbConfig.port}`}/${
+        dbConfig.db
+      }`,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
