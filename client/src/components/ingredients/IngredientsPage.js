@@ -38,7 +38,11 @@ function IngredientsPage(props) {
     props.fetchIngredients(props.user.token);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   console.log(props);
-  if (props.ingredients === null || props.ingredients.length === 0) {
+  if (
+    !props.ingredients ||
+    props.ingredients === null ||
+    props.ingredients.length === 0
+  ) {
     return (
       <Box>
         <Typography variant="h2">{labels['LABEL_INGREDIENTS']}</Typography>

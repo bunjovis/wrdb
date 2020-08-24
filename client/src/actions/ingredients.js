@@ -92,6 +92,7 @@ function clearIngredient(json) {
   };
 }
 export function addIngredient(token, ingredient) {
+  console.log('test');
   return (dispatch) => {
     return fetch('../api/ingredienttypes', {
       method: 'POST',
@@ -106,6 +107,7 @@ export function addIngredient(token, ingredient) {
       }),
     })
       .then((res) => {
+        console.log(res);
         return res.json();
       })
       .then((json) => {

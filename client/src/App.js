@@ -150,7 +150,7 @@ function App(props) {
                   <Route exact path="/settings" component={SettingsPage} />
                 </Box>
               ) : (
-                ''
+                <Redirect to="/" />
               )}
             </Paper>
           </BrowserRouter>

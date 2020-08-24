@@ -166,7 +166,7 @@ function EditWinePage(props) {
     <Box>
       {props.ingredients ? (
         <Box>
-          <Typography variant="h2">{labels['LABEL_WINES_NEW']}</Typography>
+          <Typography variant="h2">{labels['LABEL_WINES_EDIT']}</Typography>
           <form onSubmit={handleSubmit}>
             <FormGroup style={{ width: '50%', margin: 'auto' }}>
               <TextField

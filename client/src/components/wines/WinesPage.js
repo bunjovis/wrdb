@@ -38,7 +38,7 @@ function WinesPage(props) {
     props.fetchWines(props.user.token);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (props.wines === null || props.wines.length === 0) {
+  if (!props.wines || props.wines === null || props.wines.length === 0) {
     return (
       <Box>
         <Typography variant="h2">{labels['LABEL_WINES']}</Typography>
